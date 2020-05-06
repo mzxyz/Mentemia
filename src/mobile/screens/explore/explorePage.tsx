@@ -1,54 +1,40 @@
-import React, { useState } from 'react';
-import { View, Text, Dimensions } from 'react-native';
-import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-import ExploreListPage from './exploreListPage';
+import React, { PureComponent } from 'react';
+import { FlatList, View, ListRenderItem } from 'react-native';
 
-const initialLayout = { width: Dimensions.get('window').width };
+import TabBarView from '../../components/tabBarView';
+import Card from '../../components/card';
 
-function ExplorePage() {
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    {key: 'first', title: 'Latest'},
-    {key: 'second', title: 'Featured'},
-    {key: 'third', title: 'Try This'},
-    {key: 'forth', title: 'My List'},
-  ])
-
-  const renderScene = SceneMap({
-    first: ExploreListPage,
-    second: ExploreListPage,
-    third: ExploreListPage,
-    forth: ExploreListPage,
-  });
-
-  const renderTabBar = (props) => {
-    return (
-      <TabBar 
-        {...props}
-        style={{ backgroundColor: '0xffff', bottomBorderWidth: 1 }}
-        indicatorStyle={{ backgroundColor: '#0087fa' }}
-        renderLabel={({ route, focused, color }) => (
-          <Text style={{ 
-            color: focused ? 'black' : 'lightgray', 
-            fontSize: 15, 
-            fontWeight: '600',
-          }}>
-            {route.title}
-          </Text>
-        )}
-      />
-    )
+class ExplorePage extends PureComponent {
+  state = {
+    items: [1, 2, 3, 4]
   }
 
-  return (
-    <TabView
-      navigationState={{ index, routes }}
-      renderScene={renderScene}
-      renderTabBar={renderTabBar}
-      onIndexChange={setIndex}
-      initialLayout={initialLayout}
-    />
-  );
+  routes = () => {
+    // TODO: components should be container with different data source
+    return [ 
+      { title: 'Latest', component: this.renderSection },
+      { title: 'Featured', component: this.renderSection },
+      { title: 'Try This', component: this.renderSection },
+      { title: 'My List', component: this.renderSection },
+    ];
+  }
+
+  renderSection = () => {
+    const { items } = this.state;
+    return (
+      <FlatList
+        data={items}
+        keyExtractor={(item) => item.toString()}
+        renderItem={({item}) => <Card />}
+      />
+    );
+  }
+
+  render() {
+    return (
+      <TabBarView routeCofnigs={this.routes()} />
+    );
+  }
 }
 
 export default ExplorePage;

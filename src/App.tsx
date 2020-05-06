@@ -8,13 +8,12 @@
 
 import React from 'react';
 import { View, SafeAreaView } from 'react-native';
-
-import ExplorePage from './mobile/screens/explore/explorePage';
+import TabBarNavigator from './mobile/navigators/tabBarNavigator';
 
 const App = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ExplorePage />
+      <TabBarNavigator />
     </SafeAreaView>
   );
 };

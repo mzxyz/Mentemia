@@ -15,7 +15,7 @@ export const ContentContainer = styled.View`
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   border-color: lightgray;
-  border-width: ${StyleSheet.hairlineWidth};
+  border-width: ${StyleSheet.hairlineWidth}px;
   overflow: hidden;
 `;
 

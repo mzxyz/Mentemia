@@ -6,12 +6,17 @@ import { get } from 'lodash';
 
 type Props = {
   name: string,
-  color: string,
   size: number,
-  IconSet?: IconSet
+  color : string,
+  IconSet ?: IconSet
 };
 
-const Icon = ({ name, color, size, IconSet = MaterialIcons }: Props) => {
+const Icon = ({ 
+  name, 
+  size, 
+  color,
+  IconSet = MaterialIcons 
+}: Props) => {
   IconSet.loadFont();
   return <IconSet name={name} color={color} size={size} />;
 };
