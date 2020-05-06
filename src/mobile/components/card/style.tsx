@@ -1,12 +1,32 @@
-import styled from 'styled-components';
 import { StyleSheet } from 'react-native';
+import styled from 'styled-components';
 
-export const Container = styled.View`
+export const Container = styled.ImageBackground`
   flex: 1;
+  justify-content: flex-end;
   margin: 10px 20px;
-  border-radius: 20px;
+  resize-mode: cover;
+  height: 300px;
+`;
+
+export const ContentContainer = styled.View`
+  background-color: white;
+  padding: 20px 20px 30px 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   border-color: lightgray;
   border-width: ${StyleSheet.hairlineWidth};
-  background-color: lightblue;
-  height: 200px;
+  overflow: hidden;
 `;
+
+export const Tag = styled.Text`
+  font-size: 12px;
+  color: gray;
+`;
+
+export const MainTitle = styled.Text`
+  font-size: 23px;
+  font-weight: 700;
+  color: black;
+  margin-top: 10px;
+`
