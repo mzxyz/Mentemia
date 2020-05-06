@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, ContentContainer, MainTitle, Tag } from './style';
+import Icon from '../icon/';
+import { Container, ContentContainer, MainTitle, TagContainer, Tag } from './style';
 
 const Card = () => (
   <Container
@@ -8,7 +9,10 @@ const Card = () => (
     imageStyle={style.image}
   >
     <ContentContainer>
-      <Tag>1 mins * Enjoy</Tag>
+      <TagContainer>
+        <Icon name='assignment' color='lightgray' size={16} />
+        <Tag>1 mins * Enjoy</Tag>
+      </TagContainer>
       <MainTitle>Try this: Plan for laughter</MainTitle>
     </ContentContainer>
   </Container>

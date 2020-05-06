@@ -39,6 +39,17 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Questrial</string>
+		<string>AntDesign</string>
+		<string>Entypo</string>
+		<string>Feather</string>
+		<string>Fontisto</string>
+		<string>Foundation</string>
+		<string>Ionicons</string>
+		<string>MaterialIcons</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

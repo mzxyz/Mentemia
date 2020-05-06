@@ -19,9 +19,15 @@ export const ContentContainer = styled.View`
   overflow: hidden;
 `;
 
+export const TagContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
 export const Tag = styled.Text`
   font-size: 12px;
   color: gray;
+  margin-left: 5px;
 `;
 
 export const MainTitle = styled.Text`
