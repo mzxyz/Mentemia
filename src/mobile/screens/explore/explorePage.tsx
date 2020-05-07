@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import { FlatList, View, ListRenderItem } from 'react-native';
-
-import TabBarView from '../../components/tabBarView';
-import Card from '../../components/card';
+import { TabBarView, Card } from '../../components';
 
 class ExplorePage extends PureComponent {
   state = {

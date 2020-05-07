@@ -8,17 +8,17 @@ type Props = {
   name: string,
   size: number,
   color : string,
-  IconSet ?: IconSet
+  Icon ?: IconSet
 };
 
 const Icon = ({ 
   name, 
   size, 
   color,
-  IconSet = MaterialIcons 
+  Icon = MaterialIcons 
 }: Props) => {
-  IconSet.loadFont();
-  return <IconSet name={name} color={color} size={size} />;
+  Icon.loadFont();
+  return <Icon name={name} color={color} size={size} />;
 };
 
 export default Icon;

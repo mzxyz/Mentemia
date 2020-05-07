@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { View, ScrollView } from 'react-native';
-import RowItem from '../../components/row-item'
+import { RowItem, TabHeader } from '../../components';
 
 type Project = {
   title: string,
@@ -36,6 +36,7 @@ class TrainingPage extends PureComponent<Props> {
     const { projects } = this.props;
     return (
       <View style={{ flex: 1 }}>
+        <TabHeader title="Tools" />
         <ScrollView style={{ flex: 1, backgroundColor: '#fbfbfd'}}>
           {!!projects && projects.map(this.renderRowItem)}
         </ScrollView>

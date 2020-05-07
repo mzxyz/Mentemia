@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import { View, ScrollView } from 'react-native';
-
-import RowItem from '../../components/row-item'
-import TextRowItem from '../../components/text-row-item'
+import { RowItem, TabHeader, TextRowItem } from '../../components';
 
 // TODO: better move the types to component folder
 type Action = {
@@ -65,6 +63,7 @@ class HomePage extends PureComponent<Props> {
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <TabHeader title="Today" />
         {this.HomeView()}
       </View>
     )
