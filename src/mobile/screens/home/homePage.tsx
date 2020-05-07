@@ -1,36 +1,38 @@
 import React, { PureComponent } from 'react';
-import { ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import RowItem from '../../components/row-item'
 import TextRowItem from '../../components/text-row-item'
-import TabBarView from '../../components/tabBarView/';
 
-// TODO: migrate mock data to epics
-const dataSource = {
-  actions: [
-    { title: 'Watch this first', subTitle:'Personality quiz', icon:'grade' },
-    { title: 'Watch this first', subTitle:'Personality quiz', icon:'subject' },
-  ],
-  articles: [
-    { title: 'Try this', content: 'Try this: Treat yourself every day' },
-    { title: 'Try this', content: 'Try this: Alternate nostril breathing' },
-    { title: 'Read this', content: 'Do these things during the day to sleep better at night' },
-    { title: 'Watch this', content: 'Guided mindfulness: The Body Scan' },
-  ],
+// TODO: better move the types to component folder
+type Action = {
+  title: string,
+  subTitle: string,
+  icon: string
 };
 
-class HomePage extends PureComponent {
-  state = { ...dataSource }
+type Content = {
+  title: string,
+  content: string
+};
 
-  routes = () => ([ 
-    { title: 'Today', component: this.HomeView },
-  ]);
+type Props = {
+  actions: Array<Action>,
+  contents: Array<Content>,
+  onRequestData: () => void
+};
 
-  renderActions = (item) => {
+class HomePage extends PureComponent<Props> {
+  componentDidMount() {
+    const { onRequestData } = this.props;
+    onRequestData();
+  }
+
+  renderActions = (item: Action, index: number) => {
     const { title, subTitle, icon } = item;
     return (
       <RowItem
-        key={title}
+        key={`${title}${index}`} 
         title={title} 
         subTitle={subTitle} 
         iconName={icon} 
@@ -39,7 +41,7 @@ class HomePage extends PureComponent {
     );
   }
 
-  renderArticles = (item, index) => {
+  renderContents = (item: Content, index: number) => {
     const { title, content } = item;
     return (
       <TextRowItem 
@@ -51,18 +53,20 @@ class HomePage extends PureComponent {
   }
 
   HomeView = () => {
-    const { actions, articles } = this.state;
+    const { actions, contents } = this.props;
     return (
       <ScrollView style={{ flex: 1, backgroundColor: '#fbfbfd'}}>
         {actions.map(this.renderActions)}
-        {articles.map(this.renderArticles)}
+        {contents.map(this.renderContents)}
       </ScrollView>
     );
   }
 
   render() {
     return (
-      <TabBarView routeCofnigs={this.routes()} />
+      <View style={{ flex: 1 }}>
+        {this.HomeView()}
+      </View>
     )
   }
 }

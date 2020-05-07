@@ -1,0 +1,12 @@
+{
+  "actions": [
+    { "title": "Watch this first", "subTitle": "Personality quiz", "icon": "grade" },
+    { "title": "Watch this first", "subTitle": "Personality quiz", "icon": "subject" }
+  ],
+  "contents": [
+    { "title": "Try this", "content": "Try this: Treat yourself every day" },
+    { "title": "Try this", "content": "Try this: Alternate nostril breathing" },
+    { "title": "Read this", "content": "Do these things during the day to sleep better at night" },
+    { "title": "Watch this", "content": "Guided mindfulness: The Body Scan" }
+  ]
+}

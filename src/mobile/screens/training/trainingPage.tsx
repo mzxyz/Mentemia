@@ -1,28 +1,29 @@
 import React, { PureComponent } from 'react';
-import { ScrollView } from 'react-native';
-
+import { View, ScrollView } from 'react-native';
 import RowItem from '../../components/row-item'
-import TabBarView from '../../components/tabBarView/';
 
-const dataSource = [
-  { title: 'Worry map', subTitle:'Let go of worry', icon:'grade' },
-  { title: 'Breath training', subTitle:'A superb way to control stress', icon:'polymer' },
-  { title: 'Be kind', subTitle:'Each day brings a new opportunity', icon:'subject' },
-  { title: 'Mood tracker', subTitle:'Track your mood every day', icon:'grade' },
-];
+type Project = {
+  title: string,
+  subTitle: string,
+  icon: string
+};
 
-class TrainingPage extends PureComponent {
-  state = { items: dataSource }
+type Props = {
+  projects: Array<Project>,
+  onRequestData: () => void
+};
 
-  routes = () => ([ 
-    { title: 'Tools', component: this.TrainingView },
-  ]);
+class TrainingPage extends PureComponent<Props> {
+  componentDidMount() {
+    const { onRequestData } = this.props;
+    onRequestData();
+  }
 
-  renderRowItem = (item) => {
+  renderRowItem = (item: Project, index: number) => {
     const { title, subTitle, icon } = item;
     return (
       <RowItem
-        key={title}
+        key={`${title}${index}`} 
         title={title} 
         subTitle={subTitle} 
         iconName={icon} 
@@ -31,18 +32,14 @@ class TrainingPage extends PureComponent {
     );
   }
 
-  TrainingView = () => {
-    const { items } = this.state;
-    return (
-      <ScrollView style={{ flex: 1, backgroundColor: '#fbfbfd'}}>
-        {items.map(this.renderRowItem)}
-      </ScrollView>
-    );
-  }
-
   render() {
+    const { projects } = this.props;
     return (
-      <TabBarView routeCofnigs={this.routes()} />
+      <View style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1, backgroundColor: '#fbfbfd'}}>
+          {!!projects && projects.map(this.renderRowItem)}
+        </ScrollView>
+      </View>
     )
   }
 }
