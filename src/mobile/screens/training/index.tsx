@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 import actionTypes from '../../../actionTypes';
 import TrainingPage from './trainingPage';
 
-const mapStateToProps = ({ training }) => ({
-  projects: training.projects
+const mapStateToProps = ({ 
+  training: { projects } 
+}) => ({
+  projects
 });
 
 const mapDispatchToProps = dispatch => ({

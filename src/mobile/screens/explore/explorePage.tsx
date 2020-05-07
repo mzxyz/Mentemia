@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { FlatList, View, ListRenderItem } from 'react-native';
+import { ScrollView, View, ListRenderItem } from 'react-native';
 import { TabBarView, Card } from '../../components';
 
 class ExplorePage extends PureComponent {
@@ -17,14 +17,20 @@ class ExplorePage extends PureComponent {
     ];
   }
 
+  onCardPress = () => {
+
+  }
+
   renderSection = () => {
     const { items } = this.state;
     return (
-      <FlatList
-        data={items}
-        keyExtractor={(item) => item.toString()}
-        renderItem={({item}) => <Card />}
-      />
+      <ScrollView > 
+        {items.map((item, index) => (
+          <Card 
+            key={`${item.title}${index}`} 
+            props={{ onPress: this.onCardPress }} />
+        ))}
+      </ScrollView>
     );
   }
 

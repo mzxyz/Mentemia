@@ -3,7 +3,7 @@ import { View, SafeAreaView } from 'react-native';
 import { Provider } from 'react-redux';
 
 import TabBarNavigator from './mobile/navigators/tabBarNavigator';
-import store from './store.tsx';
+import store from './store';
 
 const App = () => {
   return (

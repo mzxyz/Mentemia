@@ -1,9 +1,7 @@
 import actionTypes from '../actionTypes';
+import dataSource from '../epics/mock/home.json';
 
-const defaultState = {
-  actions: [],
-  contents: []
-};
+const defaultState = dataSource;
 
 const homeReducer = (state = defaultState, action) => {
   switch (action.type) {
