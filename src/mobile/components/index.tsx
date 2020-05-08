@@ -5,10 +5,12 @@ import RowItem from './row-item';
 import TabHeader from './tab-header';
 import HeadLeft from './heade-left';
 import TabBarView from './tabbar-view';
+import AnimatedRowItem from './animated-row-item';
 
 export {
   Card,
   TextRowItem,
+  AnimatedRowItem,
   HeadLeft,
   TabBarView,
   TabHeader,

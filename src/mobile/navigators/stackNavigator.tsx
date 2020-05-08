@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeContainer from '../screens/home';
 import ExplorePage from '../screens/explore/explorePage';
 import TrainingContainer from '../screens/training';
+import ProfilePage from '../screens//profile';
 import HeaderLeft from '../components/heade-left';
 
 const Stack = createStackNavigator();
@@ -47,6 +48,16 @@ export const TrainingNavigator = () => (
       name="Training" 
       component={TrainingContainer}
       options={customisedOptions('Training', 'stars')}
+    />
+  </Stack.Navigator>
+);
+
+export const MeNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Training" 
+      component={ProfilePage}
+      options={customisedOptions('Me', 'stars')}
     />
   </Stack.Navigator>
 );

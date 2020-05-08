@@ -3,7 +3,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native'
 
-import { HomeNavigator , ExploreNavigator, TrainingNavigator } from './stackNavigator';
+import { HomeNavigator , ExploreNavigator, TrainingNavigator, MeNavigator } from './stackNavigator';
 import Icon from '../components/icon';
 
 const Tab = createBottomTabNavigator();
@@ -26,7 +26,7 @@ const TabSources = [
   },
   {
     name: 'Me',
-    component: TrainingNavigator,
+    component: MeNavigator,
     icon: 'person',
   },
   {

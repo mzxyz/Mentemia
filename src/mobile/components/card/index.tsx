@@ -16,6 +16,8 @@ import Icon from '../icon/';
 
 const { UIManager } = NativeModules;
 
+// TODO: need to be refactor
+
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const defaultHeight = 300;
