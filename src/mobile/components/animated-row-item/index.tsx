@@ -47,18 +47,18 @@ const AnimatedRowItem = ({
   const [isExtend, setExtend] = useState(false);
 
   function configAnimation() {
-    LayoutAnimation.configureNext(
-      LayoutAnimation.create(
-        100, 
-        LayoutAnimation.Types.linear, 
-        LayoutAnimation.Properties.opacity
-    ));
+    // LayoutAnimation.configureNext(
+    //   LayoutAnimation.create(
+    //     100, 
+    //     LayoutAnimation.Types.linear, 
+    //     LayoutAnimation.Properties.opacity
+    // ));
   }
 
   function updateState() {
     setExtend(!isExtend);
     configAnimation();
-    setTimeout(() => setRadius(isExtend ? 30 : 0), 100);
+    setRadius(isExtend ? 30 : 0);
   }
 
   return (

@@ -24,7 +24,7 @@
 		4C2EE0B62462BB4000CA33D7 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE0A62462BB3F00CA33D7 /* AntDesign.ttf */; };
 		4C2EE0B82462BB4000CA33D7 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE0A82462BB4000CA33D7 /* Feather.ttf */; };
 		4C2EE0B92462BB4000CA33D7 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE0A92462BB4000CA33D7 /* MaterialIcons.ttf */; };
-		4C2EE0BC2462C1D200CA33D7 /* Questrial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE0BB2462C1D200CA33D7 /* Questrial.ttf */; };
+		4CDE3A852465A95A00A5B2B9 /* Questrial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE3A842465A95900A5B2B9 /* Questrial.ttf */; };
 		D0A8C66F7F08A075375F3E8C /* libPods-Mentemia-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5414387E4FF793E545572EAB /* libPods-Mentemia-tvOSTests.a */; };
 		D6728214C0B615DF1BD92EDD /* libPods-Mentemia-MentemiaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA3F3D298AFC6EE14A129A5 /* libPods-Mentemia-MentemiaTests.a */; };
 		EBE9A264E14FA8C2A0A21C0D /* libPods-Mentemia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 438B4275E59A6A592DA76D1D /* libPods-Mentemia.a */; };
@@ -76,7 +76,7 @@
 		4C2EE0A62462BB3F00CA33D7 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		4C2EE0A82462BB4000CA33D7 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		4C2EE0A92462BB4000CA33D7 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		4C2EE0BB2462C1D200CA33D7 /* Questrial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Questrial.ttf; path = ../src/assets/fonts/Questrial.ttf; sourceTree = "<group>"; };
+		4CDE3A842465A95900A5B2B9 /* Questrial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Questrial.ttf; path = ../src/assets/fonts/Questrial.ttf; sourceTree = "<group>"; };
 		5414387E4FF793E545572EAB /* libPods-Mentemia-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Mentemia-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C987D114269E9E71C20C12 /* Pods-Mentemia-MentemiaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mentemia-MentemiaTests.release.xcconfig"; path = "Target Support Files/Pods-Mentemia-MentemiaTests/Pods-Mentemia-MentemiaTests.release.xcconfig"; sourceTree = "<group>"; };
 		A94A78505D85B622483E7F79 /* Pods-Mentemia-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mentemia-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Mentemia-tvOS/Pods-Mentemia-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		7EEBA315B85E410F942D7293 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE0BB2462C1D200CA33D7 /* Questrial.ttf */,
+				4CDE3A842465A95900A5B2B9 /* Questrial.ttf */,
 				4C2EE0A62462BB3F00CA33D7 /* AntDesign.ttf */,
 				4C2EE0A42462BB3F00CA33D7 /* Entypo.ttf */,
 				4C2EE0A82462BB4000CA33D7 /* Feather.ttf */,
@@ -375,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CDE3A852465A95A00A5B2B9 /* Questrial.ttf in Resources */,
 				4C2EE0AC2462BB4000CA33D7 /* Ionicons.ttf in Resources */,
 				4C2EE0AE2462BB4000CA33D7 /* Foundation.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
@@ -383,7 +384,6 @@
 				4C2EE0B42462BB4000CA33D7 /* Entypo.ttf in Resources */,
 				4C2EE0B82462BB4000CA33D7 /* Feather.ttf in Resources */,
 				4C2EE0B62462BB4000CA33D7 /* AntDesign.ttf in Resources */,
-				4C2EE0BC2462C1D200CA33D7 /* Questrial.ttf in Resources */,
 				4C2EE0B92462BB4000CA33D7 /* MaterialIcons.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -419,7 +419,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -550,25 +550,10 @@
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"$(SRCROOT)/src/assets/fonts/Questrial.ttf",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

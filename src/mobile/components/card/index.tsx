@@ -1,5 +1,11 @@
-import React, { PureComponent } from 'react';
-import { StyleSheet, Animated, NativeModules, LayoutAnimation } from 'react-native';
+import React, { PureComponent, useState } from 'react';
+import {
+  TouchableWithoutFeedback,
+  StyleSheet,
+  Animated,
+  NativeModules,
+  LayoutAnimation
+} from 'react-native';
 
 import { 
   Container, 
@@ -21,49 +27,46 @@ const { UIManager } = NativeModules;
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const defaultHeight = 300;
-const mainText = 'Try this: Plan for laughter';
+const mainText = 'COVID-19: How to stay social during lockdown';
 const tagText = '1 mins * Enjoy';
 const detailText = 'Did you know anticipateing a laugh boosts feel good hormones? Looking forward to a to a giggle is almost as good as the real deal.';
 
+const ContentView = ({ isExtend }) => {
+
+  // const [isExtend, setIsExtend] = useState(false);
+
+  const renderButton = (title: string) => (
+    <Button>
+      <ButtonTitle>{title}</ButtonTitle>
+    </Button>
+  )
+
+  return (
+    <ContentContainer focused={isExtend}> 
+      <TagContainer>
+        <Icon name='assignment' color='lightgray' size={16} />
+        <Tag focused={isExtend}>{tagText}</Tag>
+      </TagContainer>
+      <MainTitle focused={isExtend}>{mainText}</MainTitle>
+      {isExtend && <Description>{detailText}</Description>}
+      {isExtend && renderButton('Read')}
+    </ContentContainer>
+  );
+};
+
 class Card extends PureComponent {
-  state = {
-    isExtend: false,
-    height: defaultHeight
-  };
-
-  extendedHeight = (isExtend: boolean) => {
-    const { height} = this.state;
-    return !isExtend ? defaultHeight + 100 : defaultHeight;
-  }
-
-  onCardLayoutChange = (event) => {
-    const { cardHeight } = this.props;
-    const { heihgt } = event.nativeEvent.layout;
-    this.props.cardHeight = !cardHeight ? heihgt : cardHeight;
-  }
-
+  state = { isExtend: false, height: 300 };
+  
   onPress = () => {
     const { isExtend } = this.state;
-    if (!isExtend) {
-      LayoutAnimation.configureNext(
+    LayoutAnimation.configureNext(
         LayoutAnimation.create(
-          500, 
-          LayoutAnimation.Types.easeInEaseOut, 
-          LayoutAnimation.Properties.opacity
-      ));
-    } else {
-      LayoutAnimation.configureNext(
-        LayoutAnimation.create(
-          100, 
-          LayoutAnimation.Types.easeInEaseOut, 
-          LayoutAnimation.Properties.opacity
-      ));
-    }
-
-    this.setState({ 
-      isExtend: !isExtend, 
-      height: this.extendedHeight(isExtend)
-    });
+        300, 
+        LayoutAnimation.Types.EaseIn, 
+        LayoutAnimation.Properties.opacity
+    ));
+    const height = isExtend ? 300 : 450;
+    this.setState({ height, isExtend: !isExtend });
   }
 
   renderButton = (title: string) => (
@@ -75,7 +78,6 @@ class Card extends PureComponent {
   renderPrimaryContent = () => {
     const { isExtend } = this.state;
     return (
-      <Animated.View>
       <ContentContainer focused={isExtend}> 
         <TagContainer>
           <Icon name='assignment' color='lightgray' size={16} />
@@ -85,25 +87,22 @@ class Card extends PureComponent {
         {isExtend && <Description>{detailText}</Description>}
         {isExtend && this.renderButton('Read')}
       </ContentContainer>
-      </Animated.View>
     )
   }
 
   render() {
-    const { isExtend } = this.state;
+    const { isExtend, height } = this.state;
     return (
-      <Container 
-        onPress={this.onPress} 
-        onLayout={this.onCardLayoutChange} 
-        style={{ height: this.state.height }}
-      >
-        <BGImageContaienr
-          source={require('../../../images/card.png')}
-          imageStyle={style.image}
-        >
-        {this.renderPrimaryContent()}
-        </BGImageContaienr>
-      </Container>
+      <TouchableWithoutFeedback onPress={this.onPress} >
+        <Container style={{ height }}>
+          <BGImageContaienr
+            source={require('../../../images/card.png')}
+            imageStyle={style.image}
+          >
+            {this.renderPrimaryContent()}
+          </BGImageContaienr>
+        </Container>
+      </TouchableWithoutFeedback>
     );
   }
 }

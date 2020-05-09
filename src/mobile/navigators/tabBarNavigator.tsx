@@ -4,11 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native'
 
 import { HomeNavigator , ExploreNavigator, TrainingNavigator, MeNavigator } from './stackNavigator';
-import Icon from '../components/icon';
+import { BottomTabBar } from '../components/';
 
 const Tab = createBottomTabNavigator();
 
-const TabSources = [
+const TabBarSources = [
   {
     name: 'Home',
     component: HomeNavigator,
@@ -36,29 +36,24 @@ const TabSources = [
   }
 ];
 
+const tabBarItems = () => (
+  TabBarSources.map(({ name, component, icon }) => (
+    <Tab.Screen 
+      key={name} 
+      name={name} 
+      component={component} 
+      options={{ tabBarLabel: icon }} 
+    />
+  ))
+);
+
 const TabBarNavigator = () => (
   <NavigationContainer>
     <Tab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{
-        activeTintColor: '#547cfe',
-        inactiveTintColor: '#dddfe1',
-        labelStyle: { fontSize: 10, marginTop: -10 },
-      }}
+      tabBar={props => <BottomTabBar {...props} />}
     >
-      {
-        TabSources.map(({ name, component, icon }) => (
-          <Tab.Screen 
-            key={name}
-            name={name}
-            component={component}
-            options={{
-              tabBarIcon: ({color, size}) => (
-                <Icon name={icon} color={color} size={size} />
-              ),
-          }}/>
-        ))
-      }
+    {tabBarItems()}
     </Tab.Navigator>
   </NavigationContainer>
 );

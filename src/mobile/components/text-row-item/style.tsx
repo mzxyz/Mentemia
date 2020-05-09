@@ -17,8 +17,9 @@ export const Title = styled.Text`
 `;
 
 export const Content = styled.Text`
-  margin-top: 10px;
   font-weight: 500;
   font-size: 16px;
+  margin-top: 10px;
+  line-height: 25px;
   color: #000;
 `;

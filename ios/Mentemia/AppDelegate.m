@@ -43,6 +43,16 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  // test
+  for (NSString* family in [UIFont familyNames]) {
+    NSLog(@"family %@", family); 
+  
+    for (NSString* name in [UIFont fontNamesForFamilyName: family]) { 
+      NSLog(@"font name %@", name); 
+    } 
+  }
+
   return YES;
 }
 

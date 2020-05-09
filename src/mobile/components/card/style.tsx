@@ -1,14 +1,15 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components';
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled.View`
   flex: 1;
   margin: 10px 20px;
+  height: ${({ heihgt }) => heihgt}px;
 `;
 
 export const BGImageContaienr = styled.ImageBackground`
   flex: 1;
-  resize-mode: contain;
+  resize-mode: cover;
   justify-content: flex-end;
 `;
 
@@ -35,7 +36,8 @@ export const Tag = styled.Text`
 
 export const MainTitle = styled.Text`
   font-size: 23px;
-  font-weight: 700;
+  line-height: 35px;
+  font-weight: bold;
   margin-top: 10px;
   color: ${({ focused }) => focused ? '#fff' : '#000'};
 `
