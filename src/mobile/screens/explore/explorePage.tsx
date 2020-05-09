@@ -1,44 +1,37 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View, ListRenderItem } from 'react-native';
 import { TabBarView, Card } from '../../components';
 
-class ExplorePage extends PureComponent {
-  state = {
-    items: [1, 2, 3, 4]
-  }
+type Props = {
+  latest: [Object],
+  onRequestData: () => void,
+  onPushPage: () => void, 
+}
 
-  routes = () => {
-    // TODO: components should be container with different data source
-    return [ 
-      { title: 'Latest', component: this.renderSection },
-      { title: 'Featured', component: this.renderSection },
-      { title: 'Try This', component: this.renderSection },
-      { title: 'My List', component: this.renderSection },
-    ];
-  }
+const ExplorePage = ({ latest, onRequestData, onPushPage}: Props) => {
 
-  onCardPress = () => {
+  const navigation = useNavigation();
 
-  }
+  useEffect(() => {onRequestData()}, []);
 
-  renderSection = () => {
-    const { items } = this.state;
-    return (
-      <ScrollView > 
-        {items.map((item, index) => (
+  return (
+    <ScrollView > 
+      {latest.map((item, index) => {
+        const { title, details, image, tag } = item;
+        return (
           <Card 
-            key={`${item.title}${index}`} 
-            props={{ onPress: this.onCardPress }} />
-        ))}
-      </ScrollView>
-    );
-  }
-
-  render() {
-    return (
-      <TabBarView routeCofnigs={this.routes()} />
-    );
-  }
+            key={`${title}${index}`} 
+            title={title}
+            subTitle={details}
+            tag={tag}
+            imageSource={{ uri: image }}  // TODO: intergrate naviation to action
+            onPress={() => navigation.navigate('ContentDetails')}
+          />
+        )}
+      )}
+    </ScrollView>
+  );
 }
 
 export default ExplorePage;

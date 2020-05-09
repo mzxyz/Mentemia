@@ -9,10 +9,10 @@ const fetchExploreEpic = action$ =>
   action$.pipe(
     ofType(actionTypes.explore.requested),
     switchMap(() => (
-      of ({
+      of({
         type: actionTypes.explore.completed,
         payload: { ...dataSource }
-      }))
-  ));
+      })
+  )));
 
 export default fetchExploreEpic;

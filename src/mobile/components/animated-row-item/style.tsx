@@ -44,6 +44,7 @@ export const SubTitle = styled.Text`
   font-size: 15px;
   font-weight: 500;
   color: ${({ color }) => color};
+  margin-top: 2px;
 `;
 
 export const LabelView = styled.View`

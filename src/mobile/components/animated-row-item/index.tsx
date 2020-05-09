@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { 
-  Animated, 
   TouchableWithoutFeedback,
   NativeModules, 
+  Animated, 
   LayoutAnimation,
 } from 'react-native';
 
@@ -22,14 +22,16 @@ import Icon from '../icon';
 
 type Props = {
   title: string,
-  subTitle: string,
+  subTitles: string[],
   subTitleColor: string,
   iconName: string,
   iconColor: string,
   onPress ?: () => void,
 };
 
-const text = "If you are the author of this issue and you believe this issue was closed in error (i.e. you have edited your issue to ensure it meets the template requirements), please let us know.";
+const text = "If you are the author of this issue and you  \
+ believe this issue was closed in error (i.e. you have edited \
+ your issue to ensure it meets the template requirements), please let us know.";
 
 const { UIManager } = NativeModules;
 
@@ -37,7 +39,7 @@ UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationE
 
 const AnimatedRowItem = ({ 
   title, 
-  subTitle, 
+  subTitles, 
   subTitleColor, 
   iconName, 
   iconColor, 
@@ -55,14 +57,18 @@ const AnimatedRowItem = ({
     // ));
   }
 
-  function updateState() {
+  function updateStates() {
     setExtend(!isExtend);
     configAnimation();
     setRadius(isExtend ? 30 : 0);
   }
 
+  function getSubTitle() {
+    return !isExtend ? subTitles[0] : subTitles[1];
+  }
+
   return (
-    <TouchableWithoutFeedback onPress={updateState}>
+    <TouchableWithoutFeedback onPress={updateStates}>
       <Container>
         <RowContainer>
           <ContentContainer>
@@ -71,7 +77,7 @@ const AnimatedRowItem = ({
             </IconContainer>
             <TextContainer>
               {!!title && <Title>{title}</Title>}
-              {!!subTitle && <SubTitle color={subTitleColor}>{subTitle}</SubTitle>}
+              {<SubTitle color={subTitleColor}>{getSubTitle()}</SubTitle>}
             </TextContainer>
           </ContentContainer>
           <LabelView color={iconColor} radius={radius} />

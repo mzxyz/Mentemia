@@ -8,7 +8,7 @@ export const setDefaultFontFamily = () => {
       const origin = oldRender.call(this, ...args);
       return React.cloneElement(origin, {
         style: [
-          // { fontFamily: 'Menlo-Bold', letterSpacing: 0.1 },
+          // { fontFamily: 'Questrial', letterSpacing: 0.1 },
           origin.props.style
         ]
       });

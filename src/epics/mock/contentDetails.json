@@ -1,11 +1,9 @@
 {
-  "latest": [
-    {
-      "title": "COVID-19: How to stay social during lockdown",
-      "details": "Did you know anticipateing a laugh boosts feel good hormones? Looking forward to a to a giggle is almost as good as the real deal.",
-      "image": "https://images2.minutemediacdn.com/image/upload/c_crop,h_1192,w_2121,x_0,y_120/f_auto,q_auto,w_1100/v1565484096/shape/mentalfloss/58326-gettyimages-1062126602.jpg",
-      "tag": "2 mins * Topics"
-    },
+  "favorite": true,
+  "content": "<h1>Hello world</h1><br /><p>THis is a test</p><br /><h1>Hello world</h1><br /><br /><p>THis is a test</p><br /><h1>Hello world</h1><br /><p>THis is a test</p><br /><h1>Hello world</h1>",
+  "image": "https://images2.minutemediacdn.com/image/upload/c_crop,h_1192,w_2121,x_0,y_120/f_auto,q_auto,w_1100/v1565484096/shape/mentalfloss/58326-gettyimages-1062126602.jpg",
+  "tag": "2 mins * Topics",
+  "related_topics": [
     {
       "title": "Try this: Take a nap",
       "details": "A short power nap could do wonders for your mood",

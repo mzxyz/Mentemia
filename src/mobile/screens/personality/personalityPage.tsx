@@ -6,9 +6,9 @@ class PersonalityPage extends PureComponent {
 
   renderRowItem = (_, index) => (
     <AnimatedRowItem
-      key={`key${index}`} 
+      key={`key${index}`}
       title={`Part ${index+1}`} 
-      subTitle={'View report'} 
+      subTitles={['View report', 'Hide report']} 
       subTitleColor={'#547cfe'}
       iconName={'subject'} 
       iconColor={'#37de98'} 
