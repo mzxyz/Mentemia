@@ -27,7 +27,7 @@ const TabBarSources = [
   {
     name: 'Me',
     component: MeNavigator,
-    icon: 'person',
+    icon: 'perm-identity',
   },
   {
     name: 'Search',

@@ -7,6 +7,7 @@ import HeadLeft from './heade-left';
 import TabBarView from './tabbar-view';
 import AnimatedRowItem from './animated-row-item';
 import BottomTabBar from './bottom-tabbar/';
+import FavoriteIcon from './favorite-icon';
 import TagView from './tag-view';
 
 export {
@@ -17,6 +18,7 @@ export {
   TabBarView,
   TabHeader,
   BottomTabBar,
+  FavoriteIcon,
   RowItem,
   TagView,
   Icon,

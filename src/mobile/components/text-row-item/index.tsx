@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Title, Content } from './style';
 
 type Props = {
+  key: string,
   title: string,
   content: string,
   hightlight ?: boolean,

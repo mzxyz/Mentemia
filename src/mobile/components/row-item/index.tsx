@@ -10,6 +10,7 @@ import {
 } from './style';
 
 type Props = {
+  key: string,
   title: string,
   subTitle: string,
   iconName: string,

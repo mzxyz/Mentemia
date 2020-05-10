@@ -3,7 +3,7 @@ import actionTypes from '../actionTypes';
 const defaultState = {
   favorite: false,
   content: '',
-  image: '',
+  image: 'https://placeholder.png',
   related_topics: [],
 };
 

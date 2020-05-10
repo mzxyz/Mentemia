@@ -9,7 +9,7 @@ type Props = {
 
 const TagView = ({ isFocused = false, text }: Props) => (
   <Container>
-    <Icon name='assignment' color='lightgray' size={16} />
+    <Icon name='assignment' color='lightgray' size={20} />
     <Tag focused={isFocused}>{text}</Tag>
   </Container>
 );

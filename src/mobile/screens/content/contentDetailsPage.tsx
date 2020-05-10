@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import { ScrollView, StatusBar } from 'react-native';
-import { WebView } from 'react-native-webview';
-import { Container, ImageView, ContentContainer, SectionLabel } from './style';
-import { Card, TagView } from '../../components';
+import { Container, ImageView, ContentContainer, HeaderContainer, SectionLabel, ContentView } from './style';
+import { Card, TagView, FavoriteIcon} from '../../components';
 
 type Props = {
   favorite: boolean,
@@ -21,8 +20,8 @@ class ContentDetailsPage extends PureComponent<Props> {
   }
 
   renderTopics = (item, index) => {
-    const { title, details, image, tag } = item;
     const { navigation } = this.props;
+    const { title, details, image, tag } = item;
     return (
       <Card 
         key={`${title}${index}`} 
@@ -30,26 +29,28 @@ class ContentDetailsPage extends PureComponent<Props> {
         subTitle={details}
         tag={tag}
         imageSource={{ uri: image }}
-        onPress={() => navigation.navigate('ContentDetails')}
-      />
-    )}
+        onPress={() => {
+          navigation.goBack();
+          navigation.navigate('ContentDetails');
+        }}
+      />)
+  }
 
   render() {
     const { content, image, tag, relatedTopics } = this.props;
     return (
       <Container>
         <ScrollView>
-        <ImageView source={{ uri: image }} />
-        <ContentContainer>
-          <TagView text={tag} />
-          <WebView 
-            style={{ height: 300 }}
-            originWhitelist={['*']} 
-            source={content} 
-          />
-        </ContentContainer>
-        <SectionLabel>Related</SectionLabel>
-        {relatedTopics.map(this.renderTopics)}
+          <ImageView source={{ uri: image }} />
+          <ContentContainer>
+            <HeaderContainer>
+              <TagView text={tag} />
+              <FavoriteIcon onPress={() => {}} />
+            </HeaderContainer>
+            <ContentView originWhitelist={['*']} source={{ html: content }} />
+          </ContentContainer>
+          {!!relatedTopics && <SectionLabel>Related</SectionLabel>}
+          {relatedTopics.map(this.renderTopics)}
         </ScrollView>
       </Container>
     );

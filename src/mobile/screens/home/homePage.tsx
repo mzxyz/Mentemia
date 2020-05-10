@@ -41,11 +41,13 @@ class HomePage extends PureComponent<Props> {
 
   renderContents = (item: Content, index: number) => {
     const { title, content } = item;
+    const { navigation } = this.props;
     return (
       <TextRowItem 
         key={`${title}${index}`} 
         title={title}
-        content={content} 
+        content={content}
+        onPress={() => navigation.navigate('ContentDetails')}
       />
     );
   }

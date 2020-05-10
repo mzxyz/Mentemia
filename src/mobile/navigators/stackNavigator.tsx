@@ -31,6 +31,11 @@ export const HomeNavigator = () => (
       component={HomeContainer} 
       options={customisedOptions('Mentemia', 'stars')}
     />
+    <Stack.Screen 
+      name="ContentDetails" 
+      component={ContentDetailsPage}
+      options={{ header: () => null }}
+    />
   </Stack.Navigator>
 );
 
