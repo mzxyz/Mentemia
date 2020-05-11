@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { Animated } from 'react-native';
 
 // TODO: this height should be change on different size devices

@@ -8,36 +8,24 @@ import { BottomTabBar } from '../components/';
 
 const Tab = createBottomTabNavigator();
 
-const TabBarSources = [
-  {
-    name: 'Home',
-    component: HomeNavigator,
-    icon: 'home',
-  },
-  {
-    name: 'Explore',
-    component: ExploreNavigator,
-    icon: 'explore',
-  },
-  {
-    name: 'Traning',
-    component: TrainingNavigator,
-    icon: 'stars',
-  },
-  {
-    name: 'Me',
-    component: MeNavigator,
-    icon: 'perm-identity',
-  },
-  {
-    name: 'Search',
-    component: TrainingNavigator,
-    icon: 'search',
-  }
+const tabBarItem = (
+  name: string, 
+  component: React.component, 
+  icon: string
+) => ({
+  name, component, icon
+});
+
+const tabBarSources = [
+  tabBarItem('Home', HomeNavigator, 'home'),
+  tabBarItem('Explore', ExploreNavigator, 'explore'),
+  tabBarItem('Traning', TrainingNavigator, 'stars'),
+  tabBarItem('Me', MeNavigator, 'perm-identity'),
+  tabBarItem('Search', TrainingNavigator, 'search'),
 ];
 
-const tabBarItems = () => (
-  TabBarSources.map(({ name, component, icon }) => (
+const tabScreens = () => (
+  tabBarSources.map(({ name, component, icon }) => (
     <Tab.Screen 
       key={name} 
       name={name} 
@@ -53,7 +41,7 @@ const TabBarNavigator = () => (
       initialRouteName="Home"
       tabBar={props => <BottomTabBar {...props} />}
     >
-    {tabBarItems()}
+    {tabScreens()}
     </Tab.Navigator>
   </NavigationContainer>
 );

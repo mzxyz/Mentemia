@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View, ListRenderItem } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { TabBarView, Card } from '../../components';
 
 type Props = {

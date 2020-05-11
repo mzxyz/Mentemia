@@ -18,7 +18,7 @@ const TabBarItem = ({ label, icon, isFocused }: Props) => {
   const color = isFocused ? '#547cfe' : '#d2d2d4'; 
   const isFocusChanged = useCompare(isFocused);
   
-  const transformStyle = (translateY) => ({
+  const transformStyle = (translateY: Animated.Value) => ({
     transform : [{ translateY }]
   });
 
@@ -28,7 +28,11 @@ const TabBarItem = ({ label, icon, isFocused }: Props) => {
     }
   });
 
-  function startAnimation(origin, toValue, duration = 400) {
+  function startAnimation(
+    origin: Animated.Value, 
+    toValue: number, 
+    duration = 400
+  ) {
     Animated.timing(
       origin,
       {
