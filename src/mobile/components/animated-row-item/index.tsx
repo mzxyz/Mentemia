@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import { 
-  TouchableWithoutFeedback,
-  NativeModules, 
-  Animated, 
-  LayoutAnimation,
-} from 'react-native';
+import { TouchableWithoutFeedback, NativeModules } from 'react-native';
 
 import { 
   Container,
@@ -33,10 +28,6 @@ const text = "If you are the author of this issue and you  \
  believe this issue was closed in error (i.e. you have edited \
  your issue to ensure it meets the template requirements), please let us know.";
 
-const { UIManager } = NativeModules;
-
-UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
-
 const AnimatedRowItem = ({ 
   title, 
   subTitles, 
@@ -48,18 +39,8 @@ const AnimatedRowItem = ({
   const [radius, setRadius] = useState(30);
   const [isExtend, setExtend] = useState(false);
 
-  function configAnimation() {
-    // LayoutAnimation.configureNext(
-    //   LayoutAnimation.create(
-    //     100, 
-    //     LayoutAnimation.Types.linear, 
-    //     LayoutAnimation.Properties.opacity
-    // ));
-  }
-
   function updateStates() {
     setExtend(!isExtend);
-    configAnimation();
     setRadius(isExtend ? 30 : 0);
   }
 

@@ -5,14 +5,14 @@ const defaultState = {
   featured: [],
 };
 
-const exploreReducer = (state = defaultState, action) => {
+const exploreReducer = (state = defaultState, action: any) => {
   switch (action.type) {
     case actionTypes.explore.requested:
     case actionTypes.explore.completed:
     case actionTypes.explore.failed:
       return { ...state, ...action.payload };
     default:
-      return defaultState;
+      return state;
   }
 };
 

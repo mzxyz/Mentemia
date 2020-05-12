@@ -10,11 +10,7 @@ const App = () => {
   useEffect(() => {
     setDefaultFontFamily();
   });
-
-    //  <SafeAreaView style={{ flex: 1 }}>
-      
-    //   </SafeAreaView>
-
+  
   return (
     <Provider store={store}>
       <TabBarNavigator />
