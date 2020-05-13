@@ -5,7 +5,7 @@ import Icon from '../icon';
 
 type Props = {
   isFavorite: boolean,
-  onPress : (selected: boolean) => void,
+  onPress : (isFavorite: boolean) => void,
 }
 
 const FavoriteIcon: React.FC<Props> = ({ isFavorite, onPress }) => {
@@ -19,7 +19,7 @@ const FavoriteIcon: React.FC<Props> = ({ isFavorite, onPress }) => {
   const [name, setName] = useState(isFavorite ? hightlightIcon : primaryIcon);
   const [color, setColor] = useState(isFavorite ? hightlightColor : primaryColor);
 
-  function onIconPress() {
+  const onIconPress = () => {
     if (onPress) { onPress(!selected) }
     setName(selected ? 'favorite-border' : 'favorite');
     setColor(selected ? primaryColor : hightlightColor);
@@ -27,7 +27,7 @@ const FavoriteIcon: React.FC<Props> = ({ isFavorite, onPress }) => {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={onIconPress}>
+    <TouchableWithoutFeedback onPress={() => onIconPress()}>
       <Container>
         <Icon name={name} color={color} size={30} />
       </Container>

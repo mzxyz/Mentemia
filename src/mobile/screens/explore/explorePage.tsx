@@ -36,7 +36,7 @@ const ExplorePage = ({
             tag={tag}
             isFavorite={isFavorite}
             imageSource={{ uri: image }}
-            onFavoriteChanged={selected => onFavoriteChanged(item, selected)}
+            onFavoriteChanged={isFavorite => onFavoriteChanged(item, isFavorite)}
             onPress={() => onMediaDetails('key') }
           />
         )}

@@ -1,5 +1,5 @@
 {
-  "latest": [
+  "latestList": [
     {
       "id": 10001,
       "title": "COVID-19: How to stay social during lockdown",
@@ -33,7 +33,7 @@
       "isFavorite": false
     }
   ],
-  "featured": [
+  "featuredList": [
     {
       "id": 10005,
       "title": "COVID-19: How to stay social during lockdown",
@@ -67,7 +67,7 @@
       "isFavorite": false
     }
   ],
-  "explore": [
+  "exploreList": [
     {
       "id": 10009,
       "title": "COVID-19: How to stay social during lockdown",
@@ -101,6 +101,6 @@
       "isFavorite": false
     }
   ],
-  "favorite": [
+  "favoriteList": [
   ]
 }

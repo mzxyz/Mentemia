@@ -1,8 +1,8 @@
-import R from 'ramda';
 import { of } from 'rxjs';
+import R from 'ramda';
 import { mergeMap } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
-import { ActionsObservable } from '../actionTypes';
+import { ActionsObservable } from './types';
 
 const chainEpics = R.curry((
   fromType: string, 

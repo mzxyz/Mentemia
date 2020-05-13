@@ -6,31 +6,31 @@ import ExplorePage from './explorePage';
 
 // TODO: need refactor
 const mapStateToLatestProps = ({ 
-  explore: { latest }
+  explore: { latestList }
 }: State) => ({
   type: 'latest',
-  dataList: latest,
+  dataList: latestList,
 });
 
 const mapStateToFeaturedProps = ({ 
-  explore: { featured }
+  explore: { featuredList }
 }: State) => ({
   type: 'featured',
-  dataList: featured,
+  dataList: featuredList,
 });
 
 const mapStateToExploreProps = ({ 
-  explore: { explore }
+  explore: { exploreList }
 }: State) => ({
   type: 'explore',
-  dataList: explore,
+  dataList: exploreList,
 });
 
 const mapStateToFavoriteProps = ({ 
-  explore: { favorite }
+  explore: { favoriteList }
 }: State) => ({
   type: 'favorite',
-  dataList: favorite,
+  dataList: favoriteList,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -39,10 +39,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
       type: actionTypes.explore.requested,
       payload: { type }
     }),
-  onFavoriteChanged: (item: MediaCard, selected: boolean) => 
+  onFavoriteChanged: (item: MediaCard, isFavorite: boolean) => 
     dispatch({
       type: actionTypes.changeFavorite.toggled,
-      payload: { item, selected }
+      payload: { item, isFavorite }
     }),
   onMediaDetails: () => 
     dispatch({ type: actionTypes.navigate.mediaDetails })

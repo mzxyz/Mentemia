@@ -2,17 +2,17 @@ import actionTypes, { IAction } from '../actionTypes';
 import { MediaCard } from './types';
 
 export type ExploreState = {
-  latest: MediaCard[],
-  featured: MediaCard[],
-  explore: MediaCard[],
-  favorite: MediaCard[],
+  latestList: MediaCard[],
+  featuredList: MediaCard[],
+  exploreList: MediaCard[],
+  favoriteList: MediaCard[],
 }
 
 const defaultState: ExploreState = {
-  latest: [],
-  featured: [],
-  explore: [],
-  favorite: [],
+  latestList: [],
+  featuredList: [],
+  exploreList: [],
+  favoriteList: [],
 };
 
 const exploreReducer = (state = defaultState, action: IAction) => {

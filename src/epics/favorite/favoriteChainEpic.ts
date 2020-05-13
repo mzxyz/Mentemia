@@ -1,10 +1,10 @@
 import { chainEpicsWithAction } from '../chainEpic';
-import actonTypes from '../../actionTypes';
+import actionTypes from '../../actionTypes';
 
 const favoriteChainEpics = [
   chainEpicsWithAction(
-    actonTypes.changeFavorite.toggled,
-    actonTypes.updateFavorite.requested
+    actionTypes.changeFavorite.toggled,
+    actionTypes.updateFavorite.requested
   ),
 ];
 

@@ -34,7 +34,7 @@ type Props = {
   tag: string,
   isFavorite: boolean,
   imageSource: { uri: string } | number,
-  onFavoriteChanged : (selected: boolean) => void,
+  onFavoriteChanged : (isFavorite: boolean) => void,
   onPress : () => void,
 }
 
@@ -88,7 +88,7 @@ const Card: React.FC<Props> = ({
         <FavoriteContainer>
           <FavoriteIcon
             isFavorite={isFavorite} 
-            onPress={selected => onFavoriteChanged(selected)} 
+            onPress={isFavorite => onFavoriteChanged(isFavorite)} 
           />
         </FavoriteContainer>
       </Container>

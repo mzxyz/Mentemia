@@ -11,19 +11,19 @@ const refreshFavoritesEpic = (action$: ActionsObservable, state$: StateObservabl
     ofType(actionTypes.changeFavorite.toggled),
     withLatestFrom(state$),
     switchMap(([action, state]) => {
+      const isFavorite = get(action, 'payload.isFavorite');
       const item = get(action, 'payload.item');
-      const selected = get(action, 'payload.selected');
       
-      let favorite = state.explore.favorite;
-      if (selected) {
-        favorite = [{ ...item, isFavorite: true }, ...favorite];
+      let favoriteList = state.explore.favoriteList;
+      if (isFavorite) {
+        favoriteList = [{ ...item, isFavorite: true }, ...favoriteList];
       } else {
-        favorite = favorite.filter(({ id }) => item.id !== id);
+        favoriteList = favoriteList.filter(({ id }) => item.id !== id);
       }
 
       return of({
         type: actionTypes.favorite.changed,
-        payload: { favorite }
+        payload: { favoriteList }
       })
     })
   );
