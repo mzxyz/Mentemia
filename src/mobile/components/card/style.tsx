@@ -64,3 +64,9 @@ export const ButtonTitle = styled.Text`
   font-size: 18px;
   font-weight: 500;
 `;
+
+export const FavoriteContainer = styled.View`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+`;

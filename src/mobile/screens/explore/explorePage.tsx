@@ -1,32 +1,43 @@
 import React, { useEffect } from 'react';
 import { ScrollView, View, ListRenderItem } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
 import { TabBarView, Card } from '../../components';
+import { MediaCard } from '../../../reducers/types';
 
 type Props = {
-  latest: [Object],
-  onRequestData: () => void,
-  onPushPage: () => void, 
+  type: string,
+  dataList: MediaCard[],
+  onRefreshData: (type: string) => void,
+  onFavoriteChanged : (item: MediaCard, isFavorite: boolean) => void,
+  onMediaDetails: (id: string) => void, 
 }
 
-const ExplorePage = ({ latest, onRequestData, onPushPage}: Props) => {
-
-  const navigation = useNavigation();
-
-  useEffect(() => {onRequestData()}, []);
+const ExplorePage = ({
+  type,
+  dataList, 
+  onRefreshData,
+  onFavoriteChanged,
+  onMediaDetails
+}: Props) => {
+  useEffect(() => {
+    onRefreshData(type);
+  }, []);
 
   return (
     <ScrollView > 
-      {latest.map((item, index) => {
-        const { title, details, image, tag } = item;
+      {dataList.map((item, index) => {
+        const { id, title, details, image, tag, isFavorite } = item;
         return (
-          <Card 
+          <Card
             key={`${title}${index}`} 
             title={title}
             subTitle={details}
             tag={tag}
-            imageSource={{ uri: image }}  // TODO: intergrate naviation to action
-            onPress={() => navigation.navigate('ContentDetails')}
+            isFavorite={isFavorite}
+            imageSource={{ uri: image }}
+            onFavoriteChanged={selected => onFavoriteChanged(item, selected)}
+            onPress={() => onMediaDetails('key') }
           />
         )}
       )}

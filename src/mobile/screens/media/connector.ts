@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import actionTypes, { Dispatch } from '../../../actionTypes';
 import { State } from '../../../reducers';
-import mediaDetailsPage from './mediaDetailsPage';
 
 const mapStateToProps = ({ 
   media

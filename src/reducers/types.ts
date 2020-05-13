@@ -1,10 +1,11 @@
 export type MediaFeature = {
-  favorite: boolean,
+  id: string,
+  isFavorite: boolean,
   image: string,
   tag: string,
 }
 
-export type Card = MediaFeature & {
+export type MediaCard = MediaFeature & {
   title: string,
   details: string,
 }

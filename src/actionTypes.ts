@@ -21,6 +21,12 @@ const actionTypes = {
   training: apiActionTypes('training data'),
   media: apiActionTypes('media details'),
 
+  // favorite
+  changeFavorite: toggledActionTypes('change favorite'),
+  updateFavorite: apiActionTypes('update favorite'),
+  favorite: changedActionTypes('favorite'),
+
+
   navigate: {
     mediaDetails: navigateActionTypes('media details'),
   }

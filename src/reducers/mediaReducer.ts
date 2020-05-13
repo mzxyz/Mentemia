@@ -1,9 +1,9 @@
 import actionTypes, { IAction } from '../actionTypes';
-import { Card, MediaFeature } from './types';
+import { MediaCard, MediaFeature } from './types';
 
 export type MediaState = MediaFeature & {
   content: string,
-  relatedTopics: Card[],
+  relatedTopics: MediaCard[],
 }
 
 const defaultState = {

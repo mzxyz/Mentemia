@@ -14,9 +14,11 @@ import {
   MainTitle, 
   Description, 
   Button,
-  ButtonTitle, 
+  ButtonTitle,
+  FavoriteContainer,
 } from './style';
 import Icon from '../icon/';
+import FavoriteIcon from '../favorite-icon';
 import TagView from '../tag-view';
 
 const { UIManager } = NativeModules;
@@ -30,15 +32,19 @@ type Props = {
   title: string,
   subTitle: string,
   tag: string,
+  isFavorite: boolean,
   imageSource: { uri: string } | number,
-  onPress ?: () => void,
+  onFavoriteChanged : (selected: boolean) => void,
+  onPress : () => void,
 }
 
 const Card: React.FC<Props> = ({
   title,
   subTitle,
   tag,
+  isFavorite,
   imageSource,
+  onFavoriteChanged,
   onPress
 }) => {
   const [isExtend, setIsExtend] = useState(false);
@@ -48,7 +54,7 @@ const Card: React.FC<Props> = ({
     LayoutAnimation.configureNext(
         LayoutAnimation.create(
         300, 
-        LayoutAnimation.Types.EaseIn, 
+        LayoutAnimation.Types.easeIn, 
         LayoutAnimation.Properties.opacity
     ));
     setIsExtend(!isExtend);
@@ -79,6 +85,12 @@ const Card: React.FC<Props> = ({
         >
           {renderPrimaryContent()}
         </BGImageContaienr>
+        <FavoriteContainer>
+          <FavoriteIcon
+            isFavorite={isFavorite} 
+            onPress={selected => onFavoriteChanged(selected)} 
+          />
+        </FavoriteContainer>
       </Container>
     </TouchableWithoutFeedback>
   );

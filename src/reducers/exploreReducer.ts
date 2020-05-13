@@ -1,15 +1,17 @@
 import actionTypes, { IAction } from '../actionTypes';
-import { Card } from './types';
+import { MediaCard } from './types';
 
 export type ExploreState = {
-  latest: Card[],
-  featured: Card[],
-  favorite: Card[],
+  latest: MediaCard[],
+  featured: MediaCard[],
+  explore: MediaCard[],
+  favorite: MediaCard[],
 }
 
 const defaultState: ExploreState = {
   latest: [],
   featured: [],
+  explore: [],
   favorite: [],
 };
 
@@ -18,6 +20,7 @@ const exploreReducer = (state = defaultState, action: IAction) => {
     case actionTypes.explore.requested:
     case actionTypes.explore.completed:
     case actionTypes.explore.failed:
+    case actionTypes.favorite.changed:
       return { ...state, ...action.payload };
     default:
       return state;

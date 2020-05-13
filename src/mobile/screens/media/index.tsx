@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { Container, ImageView, ContentContainer, HeaderContainer, SectionLabel, ContentView } from './style';
 import { Card, TagView, FavoriteIcon} from '../../components';
-import { Card as CardProps } from '../../../reducers/types';
+import { MediaCard } from '../../../reducers/types';
 import { Props, connector } from './connector';
 
 const MediaDetailsPage: React.FC<Props> = ({
@@ -21,15 +21,17 @@ const MediaDetailsPage: React.FC<Props> = ({
 
   const navigation = useNavigation();
 
-  const renderTopics = (item: CardProps, index: number) => {
-    const { title, details, image, tag } = item;
+  const renderTopics = (item: MediaCard, index: number) => {
+    const { title, details, image, tag, isFavorite } = item;
     return (
       <Card 
         key={`${title}${index}`} 
         title={title}
         subTitle={details}
         tag={tag}
+        isFavorite
         imageSource={{ uri: image }}
+        onFavoriteChanged={() => {}}
         onPress={() => {
           navigation.goBack();
           navigation.navigate('ContentDetails');

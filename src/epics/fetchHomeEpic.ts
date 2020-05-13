@@ -1,11 +1,12 @@
-import { ofType } from 'redux-observable';
+import { ofType, StateObservable } from 'redux-observable';
 import { switchMap }  from 'rxjs/operators';
 import { of } from 'rxjs';
 
+import { ActionsObservable } from './types';
 import actionTypes from '../actionTypes';
 import dataSource from './mock/home';
 
-const fetchHomeEpic = action$ =>
+const fetchHomeEpic = (action$: ActionsObservable) =>
   action$.pipe(
     ofType(actionTypes.home.requested),
     switchMap(() => (
