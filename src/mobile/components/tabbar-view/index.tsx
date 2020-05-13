@@ -1,7 +1,6 @@
 import React, { useState, Component, ReactElement } from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-import ExploreListPage from './exploreListPage';
 
 const initialLayout = { width: Dimensions.get('window').width };
 

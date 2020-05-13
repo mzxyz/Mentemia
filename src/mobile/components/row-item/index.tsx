@@ -18,7 +18,13 @@ type Props = {
   onPress ?: () => void,
 };
 
-const RowItem = ({ title, subTitle, iconName, iconColor, onPress }: Props) => (
+const RowItem: React.FC<Props> = ({ 
+  title, 
+  subTitle,
+  iconName,
+  iconColor,
+  onPress
+}) => (
   <Container onPress={onPress} disabled={!onPress}>
     <IconContainer color={iconColor}>
       <Icon name={iconName} color={'white'} size={25} />

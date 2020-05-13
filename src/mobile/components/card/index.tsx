@@ -30,11 +30,17 @@ type Props = {
   title: string,
   subTitle: string,
   tag: string,
-  imageSource: Object | number,
+  imageSource: { uri: string } | number,
   onPress ?: () => void,
 }
 
-const Card = ({ title, subTitle, tag, imageSource, onPress }: Props) => {
+const Card: React.FC<Props> = ({
+  title,
+  subTitle,
+  tag,
+  imageSource,
+  onPress
+}) => {
   const [isExtend, setIsExtend] = useState(false);
   const [height, setHeight] = useState(300);
   
@@ -66,7 +72,7 @@ const Card = ({ title, subTitle, tag, imageSource, onPress }: Props) => {
 
   return (
     <TouchableWithoutFeedback onPress={onChange} >
-      <Container style={{ height }}>
+      <Container height={height}>
         <BGImageContaienr
           source={imageSource}
           imageStyle={style.image}

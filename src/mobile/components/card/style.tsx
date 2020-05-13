@@ -1,10 +1,14 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 
+type Focused = {
+   focused: boolean
+}
+
 export const Container = styled.View`
   flex: 1;
   margin: 10px 20px;
-  height: ${({ heihgt }) => heihgt}px;
+  height: ${({ height }: { height: number }) => height}px;
 `;
 
 export const BGImageContaienr = styled.ImageBackground`
@@ -14,7 +18,7 @@ export const BGImageContaienr = styled.ImageBackground`
 `;
 
 export const ContentContainer = styled.View`
-  background-color: ${({ focused }) => focused ? 'rgba(0, 0, 0, 0.4)' : '#fff'};
+  background-color: ${({ focused }: Focused) => focused ? 'rgba(0, 0, 0, 0.4)' : '#fff'};
   padding: 20px 20px 30px 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -31,7 +35,7 @@ export const TagContainer = styled.View`
 export const Tag = styled.Text`
   font-size: 12px;
   margin-left: 5px;
-  color: ${({ focused }) => focused ? 'lightgray' : 'gray'};
+  color: ${({ focused }: Focused) => focused ? 'lightgray' : 'gray'};
 `;
 
 export const MainTitle = styled.Text`
@@ -39,7 +43,7 @@ export const MainTitle = styled.Text`
   line-height: 35px;
   font-weight: bold;
   margin-top: 10px;
-  color: ${({ focused }) => focused ? '#fff' : '#000'};
+  color: ${({ focused }: Focused) => focused ? '#fff' : '#000'};
 `
 
 export const Description = styled.Text`

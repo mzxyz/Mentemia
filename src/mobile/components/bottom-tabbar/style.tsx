@@ -14,7 +14,7 @@ export const ItemContainer = styled.View`
 `;
    
 export const LabelText = styled(Animated.Text)`
-  color: ${({ color }) => color}
+  color: ${({ color }: { color: string }) => color}
   font-size: 10px;
   margin-top: -6px;
 `;

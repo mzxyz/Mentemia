@@ -5,7 +5,7 @@ type Props = {
   title: string,
 }
 
-const TabHeader = ({ title }: Props) => (
+const TabHeader: React.FC<Props> = ({ title }) => (
   <Container>
     <Title>{title}</Title>
     <Indicator color={'#547cfe'} />

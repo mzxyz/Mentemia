@@ -7,7 +7,7 @@ type Props = {
   iconName: string,
 }
 
-const HeaderLeft = ({ title, iconName }: Props) => (
+const HeaderLeft: React.FC<Props> = ({ title, iconName }) => (
   <Container>
      {!!iconName && <Icon name={iconName} color={'#547cfe'} size={35} />}
      {!!title && <Title>{title}</Title>}

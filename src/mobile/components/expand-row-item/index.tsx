@@ -17,7 +17,7 @@ import Icon from '../icon';
 
 type Props = {
   title: string,
-  subTitles: string[],
+  subTitles: [string, string],
   subTitleColor: string,
   iconName: string,
   iconColor: string,
@@ -28,14 +28,14 @@ const text = "If you are the author of this issue and you  \
  believe this issue was closed in error (i.e. you have edited \
  your issue to ensure it meets the template requirements), please let us know.";
 
-const AnimatedRowItem = ({ 
+const ExpandRowItem: React.FC<Props> = ({ 
   title, 
   subTitles, 
   subTitleColor, 
   iconName, 
   iconColor, 
   onPress
-}: Props) => {
+}) => {
   const [radius, setRadius] = useState(30);
   const [isExtend, setExtend] = useState(false);
 
@@ -73,4 +73,4 @@ const AnimatedRowItem = ({
   );
 }
 
-export default AnimatedRowItem;
+export default ExpandRowItem;

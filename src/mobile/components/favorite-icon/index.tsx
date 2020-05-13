@@ -6,7 +6,7 @@ type Props = {
   onPress ?: () => void,
 }
 
-const FavoriteIcon = ({ onPress }: Props) => {
+const FavoriteIcon: React.FC<Props> = ({ onPress }) => {
   const primaryColor = 'gray';
   const hightlightColor = 'red';
   

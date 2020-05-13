@@ -36,7 +36,11 @@ const BottomTabBar = ({ state, descriptors, navigation }) => {
         key={label}
       >
       <Container>
-        <TabBarItem label={label} icon={icon} isFocused={isFocused} />
+        <TabBarItem
+          label={label} 
+          icon={icon} 
+          isFocused={isFocused} 
+        />
       </Container>
       </TouchableWithoutFeedback>
     )

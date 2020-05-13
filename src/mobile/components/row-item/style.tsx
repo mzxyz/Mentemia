@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 
+type Color = {
+  color: string,
+}
+
 export const Container = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
@@ -15,7 +19,7 @@ export const Container = styled.TouchableOpacity`
 export const IconContainer = styled.View`
   justify-content: center;
   align-items: center;
-  background-color: ${({ color }) => color };
+  background-color: ${({ color }: Color) => color };
   width: 46px;
   height: 46px;
   border-radius: 23px;
@@ -36,6 +40,6 @@ export const Title = styled.Text`
 export const SubTitle = styled.Text`
   font-size: 13px;
   font-weight: 500;
-  color: ${({ color }) => color};
+  color: ${({ color }: Color) => color};
 `;
 

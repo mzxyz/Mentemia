@@ -11,14 +11,14 @@ type Props = {
   Icon ?: IconSet
 };
 
-const Icon = ({ 
+const Icon: React.FC<Props> = ({ 
   name, 
   size, 
   color,
   Icon = MaterialIcons 
-}: Props) => {
-  Icon.loadFont();
-  return <Icon name={name} color={color} size={size} />;
+}) => {
+  IconSet.loadFont();
+  return <IconSet name={name} color={color} size={size} />;
 };
 
 export default Icon;

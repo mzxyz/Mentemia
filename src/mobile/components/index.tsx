@@ -5,7 +5,7 @@ import RowItem from './row-item';
 import TabHeader from './tab-header';
 import HeadLeft from './heade-left';
 import TabBarView from './tabbar-view';
-import AnimatedRowItem from './animated-row-item';
+import ExpandRowItem from './expand-row-item';
 import BottomTabBar from './bottom-tabbar/';
 import FavoriteIcon from './favorite-icon';
 import TagView from './tag-view';
@@ -13,7 +13,7 @@ import TagView from './tag-view';
 export {
   Card,
   TextRowItem,
-  AnimatedRowItem,
+  ExpandRowItem,
   HeadLeft,
   TabBarView,
   TabHeader,

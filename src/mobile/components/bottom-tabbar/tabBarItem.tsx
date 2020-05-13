@@ -10,7 +10,7 @@ type Props = {
   isFocused: false,
 }
 
-const TabBarItem = ({ label, icon, isFocused }: Props) => {
+const TabBarItem: React.FC<Props> = ({ label, icon, isFocused }) => {
   const [opacity]= useState(new Animated.Value(1));
   const [iconY]= useState(new Animated.Value(0));
   const [dotY]= useState(new Animated.Value(60));

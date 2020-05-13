@@ -7,7 +7,7 @@ type Props = {
   text: string,
 }
 
-const TagView = ({ isFocused = false, text }: Props) => (
+const TagView: React.FC<Props> = ({ isFocused = false, text }: Props) => (
   <Container>
     <Icon name='assignment' color='lightgray' size={20} />
     <Tag focused={isFocused}>{text}</Tag>
