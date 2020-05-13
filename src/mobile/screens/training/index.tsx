@@ -1,20 +1,36 @@
-import { connect } from 'react-redux';
-import actionTypes from '../../../actionTypes';
-import TrainingPage from './trainingPage';
+import React, { useEffect } from 'react';
+import { View, ScrollView } from 'react-native';
 
-const mapStateToProps = ({ 
-  training: { projects } 
-}) => ({
-  projects
-});
+import { RowItem, TabHeader } from '../../components';
+import { Props, connector } from './connector';
+import { Training } from '../../../reducers/types';
 
-const mapDispatchToProps = dispatch => ({
-  onRequestData: () =>
-    dispatch({ type: actionTypes.training.requested }),
-});
+const TrainingPage: React.FC<Props> = ({ projects, onRequestData }) => {
+  useEffect(() => {
+    onRequestData();
+  });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TrainingPage);
+  const renderRowItem = (item: Training, index: number) => {
+    const { title, subTitle, icon } = item;
+    return (
+      <RowItem
+        key={`${title}${index}`} 
+        title={title} 
+        subTitle={subTitle} 
+        iconName={icon} 
+        iconColor={'#547cfe'} 
+      />
+    );
+  };
 
+  return (
+    <View style={{ flex: 1 }}>
+      <TabHeader title="Tools" />
+      <ScrollView style={{ flex: 1, backgroundColor: '#fbfbfd'}}>
+        {!!projects && projects.map(renderRowItem)}
+      </ScrollView>
+    </View>
+  );
+}
+
+export default connector(TrainingPage);

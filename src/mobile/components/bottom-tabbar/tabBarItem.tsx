@@ -26,7 +26,7 @@ const TabBarItem = ({ label, icon, isFocused }: Props) => {
     if (isFocusChanged) {
       triggerAnimation();
     }
-  });
+  }, []);
 
   function startAnimation(
     origin: Animated.Value, 

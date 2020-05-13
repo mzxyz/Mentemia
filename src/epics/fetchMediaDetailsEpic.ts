@@ -3,16 +3,17 @@ import { switchMap }  from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import actionTypes from '../actionTypes';
-import dataSource from './mock/contentDetails';
+import dataSource from './mock/mediaDetails';
 
-const fetchContentDetailsEpic = action$ =>
+// using delay for simulate request
+const fetchMediaDetailsEpic = action$ =>
   action$.pipe(
-    ofType(actionTypes.content.requested),
+    ofType(actionTypes.media.requested),
     switchMap(() => (
       of ({
-        type: actionTypes.content.completed,
+        type: actionTypes.media.completed,
         payload: { ...dataSource }
       }))
   ));
 
-export default fetchContentDetailsEpic;
+export default fetchMediaDetailsEpic;

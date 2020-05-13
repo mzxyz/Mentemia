@@ -1,13 +1,12 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import HeaderLeft from '../components/heade-left';
 import HomeContainer from '../screens/home';
 import ExploreContainer from '../screens/explore';
 import TrainingContainer from '../screens/training';
 import ProfilePage from '../screens//profile';
-import HeaderLeft from '../components/heade-left';
-
-import ContentDetailsPage from '../screens/content';
+import MediaDetailsContainer from '../screens/media';
 
 const Stack = createStackNavigator();
 
@@ -33,7 +32,7 @@ export const HomeNavigator = () => (
     />
     <Stack.Screen 
       name="ContentDetails" 
-      component={ContentDetailsPage}
+      component={MediaDetailsContainer}
       options={{ header: () => null }}
     />
   </Stack.Navigator>
@@ -48,7 +47,7 @@ export const ExploreNavigator = () => (
     />
     <Stack.Screen 
       name="ContentDetails" 
-      component={ContentDetailsPage}
+      component={MediaDetailsContainer}
       options={{ header: () => null }}
     />
   </Stack.Navigator>

@@ -1,13 +1,17 @@
+import actionTypes, { IAction } from '../actionTypes';
+import { Training, Label } from './types';
 
-import actionTypes from '../actionTypes';
-import dataSource from '../epics/mock/home.json';
+export type HomeState = {
+  actions: Training[],
+  medias: Label[],
+}
 
 const defaultState = {
   actions: [],
-  contents: [],
+  medias: [],
 };
 
-const homeReducer = (state = defaultState, action: any) => {
+const homeReducer = (state = defaultState, action: IAction) => {
   switch (action.type) {
     case actionTypes.home.requested:
     case actionTypes.home.completed:

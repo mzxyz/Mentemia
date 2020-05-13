@@ -1,11 +1,19 @@
-import actionTypes from '../actionTypes';
+import actionTypes, { IAction } from '../actionTypes';
+import { Card } from './types';
 
-const defaultState = {
+export type ExploreState = {
+  latest: Card[],
+  featured: Card[],
+  favorite: Card[],
+}
+
+const defaultState: ExploreState = {
   latest: [],
   featured: [],
+  favorite: [],
 };
 
-const exploreReducer = (state = defaultState, action: any) => {
+const exploreReducer = (state = defaultState, action: IAction) => {
   switch (action.type) {
     case actionTypes.explore.requested:
     case actionTypes.explore.completed:

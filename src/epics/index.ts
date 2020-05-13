@@ -3,13 +3,13 @@ import { combineEpics } from 'redux-observable';
 import fetchHomeEpic from './fetchHomeEpic';
 import fetchTrainingEpic from './fetchTrainingEpic';
 import fetchExploreEpic from './fetchExploreEpic';
-import fetchContentDetailsEpic from './fetchContentDetailsEpic';
+import fetchMediaDetailsEpic from './fetchMediaDetailsEpic';
 
 const epics = [
   fetchHomeEpic,
   fetchTrainingEpic,
   fetchExploreEpic,
-  fetchContentDetailsEpic
+  fetchMediaDetailsEpic
 ];
 
 export default combineEpics(...epics);
