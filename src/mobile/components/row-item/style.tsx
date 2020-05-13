@@ -1,9 +1,6 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
-
-type Color = {
-  color: string,
-}
+import { Color }  from '../types';
 
 export const Container = styled.TouchableOpacity`
   flex-direction: row;

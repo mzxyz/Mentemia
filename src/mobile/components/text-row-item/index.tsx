@@ -9,7 +9,12 @@ type Props = {
   onPress ?: () => void,
 }
 
-const TextRowItem: React.FC<Props> = ({ title, content, hightlight = false, onPress }) => (
+const TextRowItem: React.FC<Props> = ({
+  title,
+  content,
+  hightlight = false,
+  onPress
+}) => (
   <Container onPress={onPress}>
     <Title hightlight={hightlight}>{title}</Title>
     <Content>{content}</Content>

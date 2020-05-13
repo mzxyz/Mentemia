@@ -3,7 +3,7 @@ import { Container } from './style';
 import Icon from '../icon';
 
 type Props = {
-  onPress ?: () => void,
+  onPress : (selected: boolean) => void,
 }
 
 const FavoriteIcon: React.FC<Props> = ({ onPress }) => {
@@ -15,7 +15,7 @@ const FavoriteIcon: React.FC<Props> = ({ onPress }) => {
   const [color, setColor] = useState(primaryColor);
 
   function onIconPress() {
-    if (onPress) { onPress() }
+    if (onPress) { onPress(!selected) }
     setName(selected ? 'favorite-border' : 'favorite');
     setColor(selected ? 'gray' : 'red');
     setStatus(!selected);

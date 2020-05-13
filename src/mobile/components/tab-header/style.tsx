@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Color }  from '../types';
 
 export const Container = styled.View`
   background-color: #fff;
@@ -11,7 +12,7 @@ export const Title = styled.Text`
 `;
 
 export const Indicator = styled.View`
-  background-color: ${({ color }) => color};
+  background-color: ${({ color }: Color) => color};
   margin-top: 8px;
   width: 40px;
   height: 2px;

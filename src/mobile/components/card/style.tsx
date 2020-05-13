@@ -1,9 +1,6 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
-
-type Focused = {
-   focused: boolean
-}
+import { Focused }  from '../types';
 
 export const Container = styled.View`
   flex: 1;

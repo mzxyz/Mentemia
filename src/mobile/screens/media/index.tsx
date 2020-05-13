@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ScrollView, StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { Container, ImageView, ContentContainer, HeaderContainer, SectionLabel, ContentView } from './style';
 import { Card, TagView, FavoriteIcon} from '../../components';
@@ -13,11 +14,12 @@ const MediaDetailsPage: React.FC<Props> = ({
   tag, 
   relatedTopics, 
   onRequestData,
-  navigation,
 }) => {
   useEffect(() => {
     onRequestData();
   }, []);
+
+  const navigation = useNavigation();
 
   const renderTopics = (item: CardProps, index: number) => {
     const { title, details, image, tag } = item;

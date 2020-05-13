@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Focused } from '../types';
 
 export const Container = styled.View`
   flex-direction: row;
@@ -8,5 +9,5 @@ export const Container = styled.View`
 export const Tag = styled.Text`
   font-size: 12px;
   margin-left: 5px;
-  color: ${({ focused }) => focused ? 'lightgray' : 'gray'};
+  color: ${({ focused }: Focused) => focused ? 'lightgray' : 'gray'};
 `;

@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Hightlight }  from '../types';
 
 export const Container = styled.TouchableOpacity`
   background-color: #fff;
@@ -13,7 +14,7 @@ export const Container = styled.TouchableOpacity`
 export const Title = styled.Text`
   font-size: 14px;
   font-weight: 500;
-  color: ${({ hightlight }) => hightlight ? 'green' : '#547cfe'};
+  color: ${({ hightlight }: Hightlight) => hightlight ? 'green' : '#547cfe'};
 `;
 
 export const Content = styled.Text`

@@ -1,5 +1,6 @@
 import { StyleSheet, Animated } from 'react-native';
 import styled from 'styled-components/native';
+import { Color }  from '../types';
 
 export const Container = styled.View`
   background-color: #fff;
@@ -27,7 +28,7 @@ export const IconContainer = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 23px;
-  background-color: ${({ color }) => color };
+  background-color: ${({ color }: Color) => color };
 `;
 
 export const TextContainer = styled.View`
@@ -43,14 +44,14 @@ export const Title = styled.Text`
 export const SubTitle = styled.Text`
   font-size: 15px;
   font-weight: 500;
-  color: ${({ color }) => color};
+  color: ${({ color }: Color) => color};
   margin-top: 2px;
 `;
 
 export const LabelView = styled.View`
-  background-color: ${({ color }) => color};
+  background-color: ${({ color }: Color) => color};
   border-top-right-radius: 30px;
-  border-bottom-right-radius: ${({ radius }) => radius}px;
+  border-bottom-right-radius: ${({ radius }: { radius: number }) => radius}px;
   width: 90px;
 `;
 
