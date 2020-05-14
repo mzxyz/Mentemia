@@ -9,6 +9,7 @@ import {
 	HeaderContainer,
 	SectionLabel,
 	ContentView,
+	BackContainer,
 } from './style';
 import { Card, TagView, FavoriteIcon, BackButton } from '../../components';
 import { MediaCard } from '../../../reducers/types';
@@ -22,6 +23,8 @@ const MediaDetailsPage: React.FC<Props> = ({
 	relatedTopics,
 	onRequestData,
 	onFavoriteChanged,
+	onNavigateToMediaPage,
+	onPageBack,
 }) => {
 	useEffect(() => {
 		onRequestData();
@@ -40,10 +43,7 @@ const MediaDetailsPage: React.FC<Props> = ({
 				isFavorite={isFavorite}
 				imageSource={{ uri: image }}
 				onFavoriteChanged={(isFavorite) => onFavoriteChanged(item, isFavorite)}
-				onPress={() => {
-					navigation.goBack();
-					navigation.navigate('ContentDetails');
-				}}
+				onPress={onNavigateToMediaPage}
 			/>
 		);
 	};
@@ -68,7 +68,9 @@ const MediaDetailsPage: React.FC<Props> = ({
 				{!!relatedTopics && <SectionLabel>Related</SectionLabel>}
 				{relatedTopics.map(renderTopics)}
 			</ScrollView>
-			<BackButton onPress={() => navigation.goBack()} />
+			<BackContainer>
+				<BackButton onPress={onPageBack} />
+			</BackContainer>
 		</Container>
 	);
 };

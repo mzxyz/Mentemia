@@ -1,5 +1,6 @@
 import React from 'react';
 
+import theme from '../../../theme';
 import { Container } from './style';
 import Icon from '../icon';
 
@@ -9,7 +10,7 @@ type Props = {
 
 const BackButton: React.FC<Props> = ({ onPress }) => (
 	<Container onPress={onPress}>
-		<Icon name={'clear'} color={'#547cfe'} size={30} />
+		<Icon name={'clear'} color={theme.color.blue} size={30} />
 	</Container>
 );
 

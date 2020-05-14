@@ -6,9 +6,12 @@ import actionTypes, { Dispatch } from '../../../actionTypes';
 import { RowItem, TabHeader } from '../../components';
 import { Training } from '../../../reducers/types';
 import { State } from '../../../reducers';
+import theme from '../../../theme';
 
 // page
 const TrainingPage: React.FC<Props> = ({ projects, onRequestData }) => {
+	const { blue, gray } = theme.color;
+
 	useEffect(() => {
 		onRequestData();
 	});
@@ -21,7 +24,7 @@ const TrainingPage: React.FC<Props> = ({ projects, onRequestData }) => {
 				title={title}
 				subTitle={subTitle}
 				iconName={icon}
-				iconColor={'#547cfe'}
+				iconColor={blue}
 			/>
 		);
 	};
@@ -29,7 +32,7 @@ const TrainingPage: React.FC<Props> = ({ projects, onRequestData }) => {
 	return (
 		<View style={{ flex: 1 }}>
 			<TabHeader title="Tools" />
-			<ScrollView style={{ flex: 1, backgroundColor: '#fbfbfd' }}>
+			<ScrollView style={{ flex: 1, backgroundColor: gray }}>
 				{!!projects && projects.map(renderRowItem)}
 			</ScrollView>
 		</View>

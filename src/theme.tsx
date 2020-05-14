@@ -16,3 +16,16 @@ export const setDefaultFontFamily = () => {
 		};
 	});
 };
+
+// siple theme
+const theme = {
+	color: {
+		white: '#fff',
+		blue: '#547cfe',
+		green: '#37de98',
+		gray: '#fbfbfd',
+		darkGray: '#d2d2d4',
+	}
+}
+
+export default theme;

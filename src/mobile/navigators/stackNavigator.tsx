@@ -26,7 +26,7 @@ export const HomeNavigator = () => (
 			options={customisedOptions('Mentemia', 'stars')}
 		/>
 		<Stack.Screen
-			name="ContentDetails"
+			name="MediaDetails"
 			component={MediaDetailsContainer}
 			options={{ header: () => null }}
 		/>
@@ -41,7 +41,7 @@ export const ExploreNavigator = () => (
 			options={customisedOptions('Explore', 'stars')}
 		/>
 		<Stack.Screen
-			name="ContentDetails"
+			name="MediaDetails"
 			component={MediaDetailsContainer}
 			options={{ header: () => null }}
 		/>

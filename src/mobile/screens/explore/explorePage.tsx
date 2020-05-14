@@ -10,7 +10,7 @@ type Props = {
 	dataList: MediaCard[];
 	onRefreshData: (type: string) => void;
 	onFavoriteChanged: (item: MediaCard, isFavorite: boolean) => void;
-	onMediaDetails: (id: string) => void;
+	onNavigation: () => void;
 };
 
 // just a demo for pull refresh
@@ -25,7 +25,7 @@ const ExplorePage = ({
 	dataList,
 	onRefreshData,
 	onFavoriteChanged,
-	onMediaDetails,
+	onNavigation,
 }: Props) => {
 	useEffect(() => {
 		onRefreshData(type);
@@ -52,7 +52,7 @@ const ExplorePage = ({
 						isFavorite={isFavorite}
 						imageSource={{ uri: image }}
 						onFavoriteChanged={(isFavorite) => onFavoriteChanged(item, isFavorite)}
-						onPress={() => onMediaDetails('key')}
+						onPress={onNavigation}
 					/>
 				);
 			})}

@@ -1,8 +1,10 @@
 import React, { useState, Component, ReactElement } from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import theme from '../../../theme';
 
 const initialLayout = { width: Dimensions.get('window').width };
+const { white, blue, gray } = theme.color;
 
 type Route = {
 	title: string;
@@ -35,8 +37,8 @@ const TabBarView = ({ routeCofnigs }: Props) => {
 		return (
 			<TabBar
 				{...props}
-				style={{ backgroundColor: '#fff' }}
-				indicatorStyle={{ backgroundColor: '#547cfe' }}
+				style={{ backgroundColor: white }}
+				indicatorStyle={{ backgroundColor: blue }}
 				renderLabel={({ route, focused, color }) => (
 					<Text
 						style={{
@@ -58,7 +60,7 @@ const TabBarView = ({ routeCofnigs }: Props) => {
 			renderTabBar={renderTabBar}
 			onIndexChange={setIndex}
 			initialLayout={initialLayout}
-			sceneContainerStyle={{ backgroundColor: '#fbfbfd' }}
+			sceneContainerStyle={{ backgroundColor: gray }}
 		/>
 	);
 };

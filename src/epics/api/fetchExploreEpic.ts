@@ -2,9 +2,9 @@ import { ofType } from 'redux-observable';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { ActionsObservable } from './types';
-import actionTypes from '../actionTypes';
-import dataSource from './mock/explore';
+import { ActionsObservable } from '../types';
+import actionTypes from '../../actionTypes';
+import dataSource from '../mock/explore';
 
 const fetchExploreEpic = (action$: ActionsObservable) =>
 	action$.pipe(

@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { Animated } from 'react-native';
+import theme from '../../../theme';
 
 // TODO: this height should be change on different size devices
 export const Container = styled.View`
@@ -23,5 +24,5 @@ export const DotView = styled(Animated.View)`
 	width: 8px;
 	height: 8px;
 	border-radius: 4px;
-	background-color: #547cfe;
+	background-color: ${theme.color.blue};
 `;

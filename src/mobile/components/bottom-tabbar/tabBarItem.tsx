@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Animated } from 'react-native';
 import { ItemContainer, LabelText, DotView } from './style';
 import { useCompare } from '../../../utils/hook';
+import theme from '../../../theme';
 import Icon from '../icon';
 
 type Props = {
@@ -15,7 +16,8 @@ const TabBarItem: React.FC<Props> = ({ label, icon, isFocused }) => {
 	const [iconY] = useState(new Animated.Value(0));
 	const [dotY] = useState(new Animated.Value(60));
 
-	const color = isFocused ? '#547cfe' : '#d2d2d4';
+	const { blue, darkGray } = theme.color;
+	const color = isFocused ? blue : darkGray;
 	const isFocusChanged = useCompare(isFocused);
 
 	const transformStyle = (translateY: Animated.Value) => ({

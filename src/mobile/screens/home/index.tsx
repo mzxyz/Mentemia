@@ -4,8 +4,14 @@ import { View, ScrollView, StatusBar } from 'react-native';
 import { RowItem, TabHeader, TextRowItem } from '../../components';
 import { Label, Training } from '../../../reducers/types';
 import { Props, connector } from './connector';
+import theme from '../../../theme';
 
-const HomePage: React.FC<Props> = ({ actions, medias, onRequestData, navigation }) => {
+const HomePage: React.FC<Props> = ({
+	actions,
+	medias,
+	onRequestData,
+	onNavigateToMediaPage
+}) => {
 	useEffect(() => {
 		onRequestData();
 	}, []);
@@ -18,7 +24,7 @@ const HomePage: React.FC<Props> = ({ actions, medias, onRequestData, navigation 
 				title={title}
 				subTitle={subTitle}
 				iconName={icon}
-				iconColor={'#547cfe'}
+				iconColor={theme.color.blue}
 			/>
 		);
 	};
@@ -30,7 +36,7 @@ const HomePage: React.FC<Props> = ({ actions, medias, onRequestData, navigation 
 				key={`${title}${index}`}
 				title={title}
 				content={subTitle}
-				onPress={() => navigation.navigate('ContentDetails')}
+				onPress={(onNavigateToMediaPage)}
 			/>
 		);
 	};
@@ -39,7 +45,7 @@ const HomePage: React.FC<Props> = ({ actions, medias, onRequestData, navigation 
 		<View style={{ flex: 1 }}>
 			<StatusBar barStyle="dark-content" />
 			<TabHeader title="Today" />
-			<ScrollView style={{ flex: 1, backgroundColor: '#fbfbfd' }}>
+			<ScrollView style={{ flex: 1, backgroundColor: theme.color.gray }}>
 				{actions.map(renderActions)}
 				{medias.map(renderMedias)}
 			</ScrollView>

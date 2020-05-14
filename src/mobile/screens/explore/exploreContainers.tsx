@@ -3,6 +3,7 @@ import actionTypes, { Dispatch } from '../../../actionTypes';
 import { MediaCard } from '../../../reducers/types';
 import { State } from '../../../reducers/';
 import ExplorePage from './explorePage';
+import { navigate } from '../../../utils/rootNavigation';
 
 // TODO: need refactor
 const mapStateToLatestProps = ({ explore: { latestList } }: State) => ({
@@ -36,7 +37,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 			type: actionTypes.changeFavorite.toggled,
 			payload: { item, isFavorite },
 		}),
-	onMediaDetails: () => dispatch({ type: actionTypes.navigate.mediaDetails }),
+	onNavigation: () =>  navigate('MediaDetails')
 });
 
 export const LatestContainer = connect(mapStateToLatestProps, mapDispatchToProps)(ExplorePage);

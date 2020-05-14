@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
 	flex: 1;
 	background-color: #fff;
-	margin-top: 40px;
 `;
 
 export const ImageView = styled.ImageBackground`
@@ -39,4 +38,10 @@ export const SectionLabel = styled.Text`
 	color: lightgray;
 	font-weight: 600;
 	margin: 0px 0px 10px 15px;
+`;
+
+export const BackContainer = styled.View`
+	position: absolute;
+	top: 40px;
+	left: 10px;
 `;
