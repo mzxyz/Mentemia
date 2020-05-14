@@ -12,16 +12,16 @@ import BackButton from './back-button';
 import TagView from './tag-view';
 
 export {
-  Card,
-  TextRowItem,
-  ExpandRowItem,
-  HeadLeft,
-  TabBarView,
-  TabHeader,
-  BottomTabBar,
-  FavoriteIcon,
-  BackButton,
-  RowItem,
-  TagView,
-  Icon,
+	Card,
+	TextRowItem,
+	ExpandRowItem,
+	HeadLeft,
+	TabBarView,
+	TabHeader,
+	BottomTabBar,
+	FavoriteIcon,
+	BackButton,
+	RowItem,
+	TagView,
+	Icon,
 };

@@ -8,6 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write 'src/**/*.tsx' && prettier --write 'src/**/*.ts'",
+    "format-check": "prettier --check 'src/**/*.tsx' && prettier --check  'src/**/*.ts'",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'"
   },
   "dependencies": {
@@ -73,9 +75,9 @@
       "node"
     ]
   },
-  "rnpm": {
-    "assets": [
-      "./src/assets/fonts/"
-    ]
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn format-check"
+    }
   }
 }

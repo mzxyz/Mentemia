@@ -11,10 +11,7 @@ const flipperReduxDebugger = createDebugger();
 // Config for redux DevTools integration
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const middleware = applyMiddleware(
-  epicMiddleware,
-  flipperReduxDebugger
-);
+const middleware = applyMiddleware(epicMiddleware, flipperReduxDebugger);
 
 const store = createStore(rootReducer, composeEnhancers(middleware));
 

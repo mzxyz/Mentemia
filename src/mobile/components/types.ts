@@ -1,11 +1,11 @@
 export type Focused = {
-   focused: boolean
-}
+	focused: boolean;
+};
 
 export type Color = {
-  color: string
-}
+	color: string;
+};
 
 export type Hightlight = {
-  hightlight: boolean
-}
+	hightlight: boolean;
+};

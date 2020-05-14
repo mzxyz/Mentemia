@@ -1,14 +1,14 @@
 import { useRef, useEffect } from 'react';
 
 export const usePrevious = (value: any) => {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-}
+	const ref = useRef();
+	useEffect(() => {
+		ref.current = value;
+	});
+	return ref.current;
+};
 
 export const useCompare = (value: any) => {
-    const prevVal = usePrevious(value)
-    return prevVal !== value
-}
+	const prevVal = usePrevious(value);
+	return prevVal !== value;
+};

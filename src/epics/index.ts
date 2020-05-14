@@ -7,11 +7,11 @@ import fetchMediaDetailsEpic from './fetchMediaDetailsEpic';
 import favoriteEpics from './favorite';
 
 const epics = [
-  fetchHomeEpic,
-  fetchTrainingEpic,
-  fetchExploreEpic,
-  fetchMediaDetailsEpic,
-  ...favoriteEpics,
+	fetchHomeEpic,
+	fetchTrainingEpic,
+	fetchExploreEpic,
+	fetchMediaDetailsEpic,
+	...favoriteEpics,
 ];
 
 export default combineEpics(...epics);

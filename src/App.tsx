@@ -7,15 +7,15 @@ import { setDefaultFontFamily } from './theme';
 import store from './store';
 
 const App = () => {
-  useEffect(() => {
-    setDefaultFontFamily();
-  });
-  
-  return (
-    <Provider store={store}>
-      <TabBarNavigator />
-    </Provider>
-  );
+	useEffect(() => {
+		setDefaultFontFamily();
+	});
+
+	return (
+		<Provider store={store}>
+			<TabBarNavigator />
+		</Provider>
+	);
 };
 
 export default App;

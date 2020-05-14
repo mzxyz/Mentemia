@@ -11,64 +11,59 @@ import MediaDetailsContainer from '../screens/media';
 const Stack = createStackNavigator();
 
 const customisedOptions = (title: string, iconName: string) => {
-  return {
-    title: '',
-    headerStyle: { shadowColor: 'transparent' },
-    headerLeft: () => (
-      <HeaderLeft 
-        title={title} 
-        iconName={iconName} 
-      />
-    )
-  }
-}
+	return {
+		title: '',
+		headerStyle: { shadowColor: 'transparent' },
+		headerLeft: () => <HeaderLeft title={title} iconName={iconName} />,
+	};
+};
 
 export const HomeNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen 
-      name="Home" 
-      component={HomeContainer} 
-      options={customisedOptions('Mentemia', 'stars')}
-    />
-    <Stack.Screen 
-      name="ContentDetails" 
-      component={MediaDetailsContainer}
-      options={{ header: () => null }}
-    />
-  </Stack.Navigator>
+	<Stack.Navigator>
+		<Stack.Screen
+			name="Home"
+			component={HomeContainer}
+			options={customisedOptions('Mentemia', 'stars')}
+		/>
+		<Stack.Screen
+			name="ContentDetails"
+			component={MediaDetailsContainer}
+			options={{ header: () => null }}
+		/>
+	</Stack.Navigator>
 );
 
 export const ExploreNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen 
-      name="Explore" 
-      component={ExploreContainer}
-      options={customisedOptions('Explore', 'stars')}
-    />
-    <Stack.Screen 
-      name="ContentDetails" 
-      component={MediaDetailsContainer}
-      options={{ header: () => null }}
-    />
-  </Stack.Navigator>
+	<Stack.Navigator>
+		<Stack.Screen
+			name="Explore"
+			component={ExploreContainer}
+			options={customisedOptions('Explore', 'stars')}
+		/>
+		<Stack.Screen
+			name="ContentDetails"
+			component={MediaDetailsContainer}
+			options={{ header: () => null }}
+		/>
+	</Stack.Navigator>
 );
 
 export const TrainingNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Training" 
-      component={TrainingContainer}
-      options={customisedOptions('Training', 'stars')}
-    />
-  </Stack.Navigator>
+	<Stack.Navigator>
+		<Stack.Screen
+			name="Training"
+			component={TrainingContainer}
+			options={customisedOptions('Training', 'stars')}
+		/>
+	</Stack.Navigator>
 );
 
 export const MeNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Training" 
-      component={ProfilePage}
-      options={customisedOptions('Me', 'stars')}
-    />
-  </Stack.Navigator>
+	<Stack.Navigator>
+		<Stack.Screen
+			name="Training"
+			component={ProfilePage}
+			options={customisedOptions('Me', 'stars')}
+		/>
+	</Stack.Navigator>
 );
