@@ -1,7 +1,7 @@
 import { ofType } from 'redux-observable';
 import { switchMap, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { get } from 'lodash';
+import { get, isNull } from 'lodash';
 
 import { ActionsObservable, StateObservable } from '../types';
 import actionTypes from '../../actionTypes';
@@ -15,7 +15,7 @@ const refreshFavoritesEpic = (action$: ActionsObservable, state$: StateObservabl
 			const item = get(action, 'payload.item');
 
 			let favoriteList = state.explore.favoriteList;
-			if (isFavorite) {
+			if (isFavorite && !isNull(item)) {
 				favoriteList = [{ ...item, isFavorite: true }, ...favoriteList];
 			} else {
 				favoriteList = favoriteList.filter(({ id }) => item.id !== id);

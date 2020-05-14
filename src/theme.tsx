@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TextInput } from 'react-native';
 
+// inject default font family to `Text` and `TextInput` components
 export const setDefaultFontFamily = () => {
 	[Text, TextInput].forEach((component) => {
 		const oldRender = component.render;

@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write 'src/**/*.tsx' && prettier --write 'src/**/*.ts'",
     "format-check": "prettier --check 'src/**/*.tsx' && prettier --check  'src/**/*.ts'",
+    "clean": "watchman watch-del-all && rm -rf node_modules $TMPDIR/metro-* $TMPDIR/haste-map-*",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'"
   },
   "dependencies": {
@@ -60,6 +61,7 @@
     "jest": "^26.0.1",
     "metro-react-native-babel-preset": "^0.59.0",
     "prettier": "^2.0.5",
+    "react-native-testing-library": "^1.13.2",
     "react-test-renderer": "16.11.0",
     "redux-devtools-extension": "^2.13.8",
     "typescript": "^3.8.3"
