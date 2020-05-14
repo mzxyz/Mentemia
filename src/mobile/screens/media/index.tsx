@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ScrollView, StatusBar } from 'react-native';
+import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { Container, ImageView, ContentContainer, HeaderContainer, SectionLabel, ContentView } from './style';
