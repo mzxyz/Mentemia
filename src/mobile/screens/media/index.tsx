@@ -62,7 +62,7 @@ const MediaDetailsPage: React.FC<Props> = ({
 
 	return (
 		<Container>
-			<ScrollView>
+			<ScrollView showsVerticalScrollIndicator={false}>
 				<ImageView source={{ uri: image }} />
 				{renderContent()}
 				{!!relatedTopics && <SectionLabel>Related</SectionLabel>}

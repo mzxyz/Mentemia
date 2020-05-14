@@ -40,7 +40,9 @@ const ExplorePage = ({
 
 	return (
 		<ScrollView
-			refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+			refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+			showsVerticalScrollIndicator={false}
+		>
 			{dataList.map((item, index) => {
 				const { id, title, details, image, tag, isFavorite } = item;
 				return (

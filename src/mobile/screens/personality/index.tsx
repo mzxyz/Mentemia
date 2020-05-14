@@ -6,7 +6,7 @@ import theme from '../../../theme';
 const PersonalityPage: React.FC<{}> = () => {
 	const items = [1, 2, 3, 4, 5];
 	return (
-		<ScrollView>
+		<ScrollView showsVerticalScrollIndicator={false}>
 			{items.map((value: number) => (
 				<ExpandRowItem
 					key={`key ${value}`}

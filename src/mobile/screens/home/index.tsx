@@ -45,7 +45,10 @@ const HomePage: React.FC<Props> = ({
 		<View style={{ flex: 1 }}>
 			<StatusBar barStyle="dark-content" />
 			<TabHeader title="Today" />
-			<ScrollView style={{ flex: 1, backgroundColor: theme.color.gray }}>
+			<ScrollView 
+				style={{ flex: 1, backgroundColor: theme.color.gray }}
+				showsVerticalScrollIndicator={false}
+			>
 				{actions.map(renderActions)}
 				{medias.map(renderMedias)}
 			</ScrollView>
