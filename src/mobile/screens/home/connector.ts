@@ -12,8 +12,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 export const connector = connect(mapStateToProps, mapDispatchToProps);
-
-export type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
-
-// Alternatively solution:
-// export type Props = ConnectedProps<typeof connector>;
+export type Props = ConnectedProps<typeof connector>;

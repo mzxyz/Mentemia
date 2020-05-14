@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import actionTypes, { Dispatch } from '../../../actionTypes';
 import { MediaCard } from '../../../reducers/types';
 import { State } from '../../../reducers';
@@ -19,4 +19,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 export const connector = connect(mapStateToProps, mapDispatchToProps);
 
-export type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
+export type Props = ConnectedProps<typeof connector>;

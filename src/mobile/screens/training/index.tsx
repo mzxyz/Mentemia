@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { View, ScrollView } from 'react-native';
+import { connect, ConnectedProps } from 'react-redux';
 
+import actionTypes, { Dispatch } from '../../../actionTypes';
 import { RowItem, TabHeader } from '../../components';
-import { Props, connector } from './connector';
 import { Training } from '../../../reducers/types';
+import { State } from '../../../reducers';
 
+// page
 const TrainingPage: React.FC<Props> = ({ projects, onRequestData }) => {
 	useEffect(() => {
 		onRequestData();
@@ -32,5 +35,20 @@ const TrainingPage: React.FC<Props> = ({ projects, onRequestData }) => {
 		</View>
 	);
 };
+
+// container
+const mapStateToProps = ({ training: { projects } }: State) => ({
+	projects,
+});
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+	onRequestData: () => dispatch({ type: actionTypes.training.requested }),
+});
+
+export const connector = connect(mapStateToProps, mapDispatchToProps);
+
+export type Props = ConnectedProps<typeof connector>;
+// Alternatively solution:
+// export type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
+
 
 export default connector(TrainingPage);
