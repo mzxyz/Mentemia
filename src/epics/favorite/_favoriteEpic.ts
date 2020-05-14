@@ -9,7 +9,7 @@ import { ActionsObservable, StateObservable } from '../types';
 
 // this is a demo for merge all the epic related with favorite updates
 
-const updateFavoriteEpics = (action$: ActionsObservable, state$: StateObservable) => 
+const favoriteEpic = (action$: ActionsObservable, state$: StateObservable) => 
   merge(
     // update favorite status and favorite list
     action$.pipe(
@@ -57,4 +57,4 @@ const updateFavoriteEpics = (action$: ActionsObservable, state$: StateObservable
     )
   );
 
-export default updateFavoriteEpics;
+export default favoriteEpic;

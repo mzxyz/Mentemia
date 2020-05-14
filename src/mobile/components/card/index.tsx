@@ -28,7 +28,6 @@ const { UIManager } = NativeModules;
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 
 type Props = {
-  key: string,
   title: string,
   subTitle: string,
   tag: string,

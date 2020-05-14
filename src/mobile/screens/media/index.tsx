@@ -3,7 +3,7 @@ import { ScrollView, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { Container, ImageView, ContentContainer, HeaderContainer, SectionLabel, ContentView } from './style';
-import { Card, TagView, FavoriteIcon} from '../../components';
+import { Card, TagView, FavoriteIcon, BackButton } from '../../components';
 import { MediaCard } from '../../../reducers/types';
 import { Props, connector } from './connector';
 
@@ -14,6 +14,7 @@ const MediaDetailsPage: React.FC<Props> = ({
   tag, 
   relatedTopics, 
   onRequestData,
+  onFavoriteChanged,
 }) => {
   useEffect(() => {
     onRequestData();
@@ -29,9 +30,9 @@ const MediaDetailsPage: React.FC<Props> = ({
         title={title}
         subTitle={details}
         tag={tag}
-        isFavorite
+        isFavorite={isFavorite}
         imageSource={{ uri: image }}
-        onFavoriteChanged={() => {}}
+        onFavoriteChanged={isFavorite => onFavoriteChanged(item, isFavorite)}
         onPress={() => {
           navigation.goBack();
           navigation.navigate('ContentDetails');
@@ -59,6 +60,7 @@ const MediaDetailsPage: React.FC<Props> = ({
         {!!relatedTopics && <SectionLabel>Related</SectionLabel>}
         {relatedTopics.map(renderTopics)}
       </ScrollView>
+      <BackButton onPress={() => navigation.goBack()} />
     </Container>
   );
 }

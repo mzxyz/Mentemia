@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { ScrollView, View, ListRenderItem } from 'react-native';
+import React, { useEffect, useCallback } from 'react';
+import { ScrollView, View, RefreshControl } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { TabBarView, Card } from '../../components';
@@ -13,6 +13,13 @@ type Props = {
   onMediaDetails: (id: string) => void, 
 }
 
+// just a demo for pull refresh
+const wait = (timeout: number) => {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
+}
+
 const ExplorePage = ({
   type,
   dataList, 
@@ -24,8 +31,19 @@ const ExplorePage = ({
     onRefreshData(type);
   }, []);
 
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, [refreshing]);
+
   return (
-    <ScrollView > 
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    > 
       {dataList.map((item, index) => {
         const { id, title, details, image, tag, isFavorite } = item;
         return (
