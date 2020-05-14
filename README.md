@@ -1,4 +1,8 @@
 
+# Mentemia Demo
+
+### React-Native 0.62.0
+
 ### App Architecture
 
 - State management: `redux`
