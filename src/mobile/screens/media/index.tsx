@@ -1,78 +1,30 @@
-import React, { useEffect } from 'react';
-import { ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
-import {
-	Container,
-	ImageView,
-	ContentContainer,
-	HeaderContainer,
-	SectionLabel,
-	ContentView,
-	BackContainer,
-} from './style';
-import { Card, TagView, FavoriteIcon, BackButton } from '../../components';
+import { connect, ConnectedProps } from 'react-redux';
+import { navigate, navigation } from '../../../utils/rootNavigation';
+import actionTypes, { Dispatch } from '../../../actionTypes';
 import { MediaCard } from '../../../reducers/types';
-import { Props, connector } from './connector';
+import { State } from '../../../reducers';
+import MediaDetailsPage from './MediaDetailsPage';
 
-const MediaDetailsPage: React.FC<Props> = ({
-	image,
-	favorite,
-	content,
-	tag,
-	relatedTopics,
-	onRequestData,
-	onFavoriteChanged,
-	onNavigateToMediaPage,
-	onPageBack,
-}) => {
-	useEffect(() => {
-		onRequestData();
-	}, []);
+const mapStateToProps = ({ media }: State) => ({
+	...media,
+	relatedTopics: media.related_topics,
+});
 
-	const navigation = useNavigation();
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+	onPageBack: () => navigation().goBack(),
+	onNavigateToMediaPage: () => {
+		navigation().goBack();
+		navigate('MediaDetails')
+	},
+	onRequestData: () => dispatch({ type: actionTypes.media.requested }),
+	onFavoriteChanged: (item: MediaCard, isFavorite: boolean) =>
+		dispatch({
+			type: actionTypes.changeFavorite.toggled,
+			payload: { item, isFavorite },
+		}),
+});
 
-	const renderTopics = (item: MediaCard, index: number) => {
-		const { title, details, image, tag, isFavorite } = item;
-		return (
-			<Card
-				key={`${title}${index}`}
-				title={title}
-				subTitle={details}
-				tag={tag}
-				isFavorite={isFavorite}
-				imageSource={{ uri: image }}
-				onFavoriteChanged={(isFavorite) => onFavoriteChanged(item, isFavorite)}
-				onPress={onNavigateToMediaPage}
-			/>
-		);
-	};
-
-	const renderContent = () => {
-		return (
-			<ContentContainer>
-				<HeaderContainer>
-					<TagView text={tag} />
-					<FavoriteIcon onPress={() => {}} />
-				</HeaderContainer>
-				<ContentView originWhitelist={['*']} source={{ html: content }} />
-			</ContentContainer>
-		);
-	};
-
-	return (
-		<Container>
-			<ScrollView showsVerticalScrollIndicator={false}>
-				<ImageView source={{ uri: image }} />
-				{renderContent()}
-				{!!relatedTopics && <SectionLabel>Related</SectionLabel>}
-				{relatedTopics.map(renderTopics)}
-			</ScrollView>
-			<BackContainer>
-				<BackButton onPress={onPageBack} />
-			</BackContainer>
-		</Container>
-	);
-};
+const connector = connect(mapStateToProps, mapDispatchToProps);
+export type Props = ConnectedProps<typeof connector>;
 
 export default connector(MediaDetailsPage);

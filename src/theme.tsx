@@ -17,6 +17,12 @@ export const setDefaultFontFamily = () => {
 	});
 };
 
+// TODO: Support multi-themes
+// 1. Using `createContext` to create ThemeContext
+// 2. Next ThemeContext.Prover in `App` component, and set a value `theme.dark | theme.light`
+// 3. `useContext(ThemeContext)` to get theme in any components
+// 4. Dynamic change theme in the root component (useState(theme));
+
 // siple theme
 const theme = {
 	color: {
@@ -25,6 +31,8 @@ const theme = {
 		green: '#37de98',
 		gray: '#fbfbfd',
 		darkGray: '#d2d2d4',
+	},
+	size: {
 	}
 }
 

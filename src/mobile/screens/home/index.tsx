@@ -1,59 +1,20 @@
-import React, { useEffect } from 'react';
-import { View, ScrollView, StatusBar } from 'react-native';
+import { connect, ConnectedProps } from 'react-redux';
+import actionTypes, { Dispatch } from '../../../actionTypes';
+import { navigate } from '../../../utils//rootNavigation';
+import { State } from '../../../reducers';
+import HomePage from './HomePage';
 
-import { RowItem, TabHeader, TextRowItem } from '../../components';
-import { Label, Training } from '../../../reducers/types';
-import { Props, connector } from './connector';
-import theme from '../../../theme';
-
-const HomePage: React.FC<Props> = ({
+const mapStateToProps = ({ home: { actions, medias } }: State) => ({
 	actions,
 	medias,
-	onRequestData,
-	onNavigateToMediaPage
-}) => {
-	useEffect(() => {
-		onRequestData();
-	}, []);
+});
 
-	const renderActions = (item: Training, index: number) => {
-		const { title, subTitle, icon } = item;
-		return (
-			<RowItem
-				key={`${title}${index}`}
-				title={title}
-				subTitle={subTitle}
-				iconName={icon}
-				iconColor={theme.color.blue}
-			/>
-		);
-	};
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+	onRequestData: () => dispatch({ type: actionTypes.home.requested }),
+	onNavigateToMediaPage: () => navigate('MediaDetails'),
+});
 
-	const renderMedias = (item: Label, index: number) => {
-		const { title, subTitle } = item;
-		return (
-			<TextRowItem
-				key={`${title}${index}`}
-				title={title}
-				content={subTitle}
-				onPress={(onNavigateToMediaPage)}
-			/>
-		);
-	};
-
-	return (
-		<View style={{ flex: 1 }}>
-			<StatusBar barStyle="dark-content" />
-			<TabHeader title="Today" />
-			<ScrollView 
-				style={{ flex: 1, backgroundColor: theme.color.gray }}
-				showsVerticalScrollIndicator={false}
-			>
-				{actions.map(renderActions)}
-				{medias.map(renderMedias)}
-			</ScrollView>
-		</View>
-	);
-};
+const connector = connect(mapStateToProps, mapDispatchToProps);
+export type Props = ConnectedProps<typeof connector>;
 
 export default connector(HomePage);
