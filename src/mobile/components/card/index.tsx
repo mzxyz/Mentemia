@@ -1,15 +1,18 @@
-import React, { PureComponent, useState } from 'react';
-import { TouchableWithoutFeedback, StyleSheet, Animated } from 'react-native';
+import React, { PureComponent, useState, useRef } from 'react';
+import { TouchableWithoutFeedback, StyleSheet, Animated, View } from 'react-native';
+import _ from 'lodash';
 
 import {
 	Container,
 	BGImageContaienr,
 	ContentContainer,
 	MainTitle,
+	DetailsContainer,
 	Description,
 	Button,
 	ButtonTitle,
 	FavoriteContainer,
+	style,
 } from './style';
 import Icon from '../icon/';
 import FavoriteIcon from '../favorite-icon';
@@ -22,8 +25,12 @@ type Props = {
 	isFavorite: boolean;
 	imageSource: { uri: string } | number;
 	onFavoriteChanged: (isFavorite: boolean) => void;
-	onPress: () => void;
+	onPress: (isExpand: boolean) => void;
+	onBtnPress: () => void,
 };
+
+export const CARD_HEIGHT = 300;
+export const CARD_EXPAND_HEIGHT = 450;
 
 const Card: React.FC<Props> = ({
 	title,
@@ -32,20 +39,23 @@ const Card: React.FC<Props> = ({
 	isFavorite,
 	imageSource,
 	onFavoriteChanged,
+	onBtnPress,
 	onPress,
 }) => {
-	const [isExtend, setIsExtend] = useState(false);
+	const [isExpanded, setIsExpanded] = useState(false);
 	const [expand, setExpand] = useState(new Animated.Value(0));
+	const [detailsHeight, setDetailsHeight] = useState(0);
+	const [contentExpandHeight, setContentExpandHeight] = useState(0);
 
 	const createInterpolate = (from, to) => ({
 		inputRange: [0, 1],
-    outputRange: [from, to]
+    outputRange: [from, to],
+		extrapolate: 'clamp'
 	});
 
+	// create interpolate values
 	const BGColorInterpolate = createInterpolate('rgba(255, 255, 255, 1)', 'rgba(0, 0, 0, 0.4)');
-	const cardHeightInterpolate = createInterpolate(300, 450);
-	// TODO: need to get content height range
-	const contentHeightInterpolate = createInterpolate(140, 336);
+	const cardHeightInterpolate = createInterpolate(CARD_HEIGHT, CARD_EXPAND_HEIGHT);
 
 	const startAnimation = (
 		origin: Animated.Value, 
@@ -59,53 +69,71 @@ const Card: React.FC<Props> = ({
 		}).start();
 	}
 
-	const onChange = () => {
-		setIsExtend(!isExtend);
-		startAnimation(expand, isExtend ? 0 : 1);
-		console.log('----------------on button press ----------------');
+	const getHeight = (event) => {
+		const { nativeEvent } = event;
+		return _.get(event, 'nativeEvent.layout.height', 0);
+	}
+	
+	const emptyFn = () => {};
+
+	const onCardPress = () => {
+		onPress(!isExpanded);
+		startAnimation(expand, isExpanded ? 0 : 1);
+		setIsExpanded(!isExpanded);
 	}
 
-	// ----------------on button press ----------------'
-
-	const onCardLayout = (event) => {
-		const { nativeEvent } = event;
-		const { layout: {x, y, width, height}} = nativeEvent;
-		console.log('card layout:', 'x:', x, 'y:',y , 'height:', height );
+	const onDetailsLayout = (event) => {
+		setDetailsHeight(getHeight(event));
 	};
 
-	const onContentLayout = (event) => {
-		const { nativeEvent } = event;
-		const { layout: {x, y, width, height}} = nativeEvent;
-		console.log('content layout:', 'x:', x, 'y:',y , 'height:', height );
+	const onExpandLayout = (event) => {
+		setContentExpandHeight(getHeight(event));
 	};
 
-	const renderButton = (title: string) => (
-		<Button onPress={onPress}>
-			<ButtonTitle>{title}</ButtonTitle>
-		</Button>
-	);
+	const animationStyle = {
+		backgroundColor: expand.interpolate(BGColorInterpolate),
+		height: expand.interpolate({
+			inputRange: [0, 1],
+			outputRange: [contentExpandHeight - detailsHeight, contentExpandHeight],
+			extrapolate: 'clamp'
+		})
+	};
 
-	const renderPrimaryContent = () => (
+	const hiddenStyle = {
+		opacity: 0,
+		position: 'absolute',
+	};
+
+	// The card component need to render 2 times
+	// 1. first render pass the layout fn to get the card height
+	// 2. second render display the card properly
+	const renderContent = (
+		style,
+		onDetailsLayout = emptyFn,
+		onExpandLayout = emptyFn
+	) => (
 		<ContentContainer 
-			style={{
-				height: expand.interpolate(contentHeightInterpolate), 
-				backgroundColor: expand.interpolate(BGColorInterpolate)
-			}} 
-			focused={isExtend} 
-			onLayout={onContentLayout}
+			style={style}
+			focused={isExpanded}
+			onLayout={onExpandLayout}
 		>
-			<TagView isFocused={isExtend} text={tag} />
-			<MainTitle focused={isExtend}>{title}</MainTitle>
+			<TagView isFocused={isExpanded} text={tag} />
+			<MainTitle focused={isExpanded}>{title}</MainTitle>
+			<DetailsContainer onLayout={onDetailsLayout}>
 			{<Description>{subTitle}</Description>}
-			{renderButton('Read')}
+			<Button onPress={onBtnPress}>
+				<ButtonTitle>Read</ButtonTitle>
+			</Button>
+			</DetailsContainer>
 		</ContentContainer>
 	);
 
 	return (
-		<TouchableWithoutFeedback onPress={onChange} onLayout={onCardLayout}>
+		<TouchableWithoutFeedback onPress={onCardPress}>
 			<Container style={{ height: expand.interpolate(cardHeightInterpolate) }}>
 				<BGImageContaienr source={imageSource} imageStyle={style.image}>
-					{renderPrimaryContent()}
+					{renderContent(hiddenStyle, onDetailsLayout, onExpandLayout)}
+					{renderContent(animationStyle)}
 				</BGImageContaienr>
 				<FavoriteContainer>
 					<FavoriteIcon
@@ -117,13 +145,5 @@ const Card: React.FC<Props> = ({
 		</TouchableWithoutFeedback>
 	);
 };
-
-const style = StyleSheet.create({
-	image: {
-		borderRadius: 20,
-		borderColor: 'lightgray',
-		borderWidth: StyleSheet.hairlineWidth,
-	},
-});
 
 export default Card;

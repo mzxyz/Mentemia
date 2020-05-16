@@ -1,15 +1,14 @@
-import { StyleSheet, Animated } from 'react-native';
+import { StyleSheet, Animated, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { Focused } from '../types';
 
 export const Container = styled(Animated.View)`
 	flex: 1;
-	margin: 10px 20px;
+	margin-bottom: 15px;
 `;
 
 export const BGImageContaienr = styled.ImageBackground`
 	flex: 1;
-	resize-mode: cover;
 	justify-content: flex-end;
 `;
 
@@ -20,6 +19,7 @@ export const ContentContainer = styled(Animated.View)`
 	border-color: lightgray;
 	border-width: ${({ focused }) => (focused ? 0 : StyleSheet.hairlineWidth)}px;
 	overflow: hidden;
+	zIndex: 0
 `;
 
 export const TagContainer = styled.View`
@@ -39,6 +39,9 @@ export const MainTitle = styled(Animated.Text)`
 	font-weight: bold;
 	margin-top: 10px;
 	color: ${({ focused }: Focused) => (focused ? '#fff' : '#000')};
+`;
+
+export const DetailsContainer = styled.View`
 `;
 
 export const Description = styled.Text`
@@ -69,3 +72,16 @@ export const FavoriteContainer = styled.View`
 	top: 20px;
 	right: 20px;
 `;
+
+
+const width = Dimensions.get('window').width;
+
+export const style = StyleSheet.create({
+	image: {
+		borderRadius: 20,
+		borderColor: 'lightgray',
+		borderWidth: StyleSheet.hairlineWidth,
+		// TODO: Better to use `contain` with correct image size
+		resizeMode: 'cover', 
+	},
+});
