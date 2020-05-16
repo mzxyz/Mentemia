@@ -1,11 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Animated } from 'react-native';
 import styled from 'styled-components/native';
 import { Focused } from '../types';
 
-export const Container = styled.View`
+export const Container = styled(Animated.View)`
 	flex: 1;
 	margin: 10px 20px;
-	height: ${({ height }: { height: number }) => height}px;
 `;
 
 export const BGImageContaienr = styled.ImageBackground`
@@ -14,8 +13,7 @@ export const BGImageContaienr = styled.ImageBackground`
 	justify-content: flex-end;
 `;
 
-export const ContentContainer = styled.View`
-	background-color: ${({ focused }: Focused) => (focused ? 'rgba(0, 0, 0, 0.4)' : '#fff')};
+export const ContentContainer = styled(Animated.View)`
 	padding: 20px 20px 30px 20px;
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
@@ -35,7 +33,7 @@ export const Tag = styled.Text`
 	color: ${({ focused }: Focused) => (focused ? 'lightgray' : 'gray')};
 `;
 
-export const MainTitle = styled.Text`
+export const MainTitle = styled(Animated.Text)`
 	font-size: 23px;
 	line-height: 35px;
 	font-weight: bold;
@@ -63,6 +61,7 @@ export const Button = styled.TouchableOpacity`
 export const ButtonTitle = styled.Text`
 	font-size: 18px;
 	font-weight: 500;
+	color: #000;
 `;
 
 export const FavoriteContainer = styled.View`

@@ -1,11 +1,5 @@
 import React, { PureComponent, useState } from 'react';
-import {
-	TouchableWithoutFeedback,
-	StyleSheet,
-	Animated,
-	NativeModules,
-	LayoutAnimation,
-} from 'react-native';
+import { TouchableWithoutFeedback, StyleSheet, Animated } from 'react-native';
 
 import {
 	Container,
@@ -20,13 +14,6 @@ import {
 import Icon from '../icon/';
 import FavoriteIcon from '../favorite-icon';
 import TagView from '../tag-view';
-
-const { UIManager } = NativeModules;
-
-// TODO: need to be refactor
-
-UIManager.setLayoutAnimationEnabledExperimental &&
-	UIManager.setLayoutAnimationEnabledExperimental(true);
 
 type Props = {
 	title: string;
@@ -48,19 +35,49 @@ const Card: React.FC<Props> = ({
 	onPress,
 }) => {
 	const [isExtend, setIsExtend] = useState(false);
-	const [height, setHeight] = useState(300);
+	const [expand, setExpand] = useState(new Animated.Value(0));
 
-	function onChange() {
-		LayoutAnimation.configureNext(
-			LayoutAnimation.create(
-				300,
-				LayoutAnimation.Types.easeIn,
-				LayoutAnimation.Properties.opacity,
-			),
-		);
-		setIsExtend(!isExtend);
-		setHeight(isExtend ? 300 : 450);
+	const createInterpolate = (from, to) => ({
+		inputRange: [0, 1],
+    outputRange: [from, to]
+	});
+
+	const BGColorInterpolate = createInterpolate('rgba(255, 255, 255, 1)', 'rgba(0, 0, 0, 0.4)');
+	const cardHeightInterpolate = createInterpolate(300, 450);
+	// TODO: need to get content height range
+	const contentHeightInterpolate = createInterpolate(140, 336);
+
+	const startAnimation = (
+		origin: Animated.Value, 
+		toValue: number, 
+		duration = 500
+	) => {
+		Animated.timing(origin, {
+			toValue,
+			duration,
+			useNativeDriver: false,
+		}).start();
 	}
+
+	const onChange = () => {
+		setIsExtend(!isExtend);
+		startAnimation(expand, isExtend ? 0 : 1);
+		console.log('----------------on button press ----------------');
+	}
+
+	// ----------------on button press ----------------'
+
+	const onCardLayout = (event) => {
+		const { nativeEvent } = event;
+		const { layout: {x, y, width, height}} = nativeEvent;
+		console.log('card layout:', 'x:', x, 'y:',y , 'height:', height );
+	};
+
+	const onContentLayout = (event) => {
+		const { nativeEvent } = event;
+		const { layout: {x, y, width, height}} = nativeEvent;
+		console.log('content layout:', 'x:', x, 'y:',y , 'height:', height );
+	};
 
 	const renderButton = (title: string) => (
 		<Button onPress={onPress}>
@@ -69,17 +86,24 @@ const Card: React.FC<Props> = ({
 	);
 
 	const renderPrimaryContent = () => (
-		<ContentContainer focused={isExtend}>
+		<ContentContainer 
+			style={{
+				height: expand.interpolate(contentHeightInterpolate), 
+				backgroundColor: expand.interpolate(BGColorInterpolate)
+			}} 
+			focused={isExtend} 
+			onLayout={onContentLayout}
+		>
 			<TagView isFocused={isExtend} text={tag} />
 			<MainTitle focused={isExtend}>{title}</MainTitle>
-			{isExtend && <Description>{subTitle}</Description>}
-			{isExtend && renderButton('Read')}
+			{<Description>{subTitle}</Description>}
+			{renderButton('Read')}
 		</ContentContainer>
 	);
 
 	return (
-		<TouchableWithoutFeedback onPress={onChange}>
-			<Container height={height}>
+		<TouchableWithoutFeedback onPress={onChange} onLayout={onCardLayout}>
+			<Container style={{ height: expand.interpolate(cardHeightInterpolate) }}>
 				<BGImageContaienr source={imageSource} imageStyle={style.image}>
 					{renderPrimaryContent()}
 				</BGImageContaienr>

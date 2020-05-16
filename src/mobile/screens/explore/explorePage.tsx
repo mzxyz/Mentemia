@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { ScrollView, View, RefreshControl } from 'react-native';
+import { ScrollView, View, RefreshControl, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { TabBarView, Card } from '../../components';
@@ -38,28 +38,38 @@ const ExplorePage = ({
 		wait(2000).then(() => setRefreshing(false));
 	}, [refreshing]);
 
+	const renderCard = ({ item, index}: { item: MediaCard, index: number }) => {
+		const { id, title, details, image, tag, isFavorite } = item;
+			return (
+				<Card
+					key={`${title}${index}`}
+					title={title}
+					subTitle={details}
+					tag={tag}
+					isFavorite={isFavorite}
+					imageSource={{ uri: image }}
+					onFavoriteChanged={(isFavorite) => onFavoriteChanged(item, isFavorite)}
+					onPress={onNavigation}
+				/>
+			);
+	}
+
 	return (
-		<ScrollView
-			refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-			showsVerticalScrollIndicator={false}
-		>
-			{dataList.map((item, index) => {
-				const { id, title, details, image, tag, isFavorite } = item;
-				return (
-					<Card
-						key={`${title}${index}`}
-						title={title}
-						subTitle={details}
-						tag={tag}
-						isFavorite={isFavorite}
-						imageSource={{ uri: image }}
-						onFavoriteChanged={(isFavorite) => onFavoriteChanged(item, isFavorite)}
-						onPress={onNavigation}
-					/>
-				);
-			})}
-		</ScrollView>
+		<FlatList
+			data={dataList}
+			renderItem={renderCard}
+			keyExtractor={item => `${item.id}${item.title}`}
+		/>
 	);
 };
+
+		// <ScrollView
+		// 	refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+		// 	showsVerticalScrollIndicator={false}
+		// >
+		// 	{dataList.map((item, index) => {
+			
+		// 	})}
+		// </ScrollView>
 
 export default ExplorePage;

@@ -8,6 +8,9 @@ import TrainingContainer from '../screens/training';
 import ProfilePage from '../screens//profile';
 import MediaDetailsContainer from '../screens/media';
 
+// TODO: test
+import { LatestContainer } from '../screens/explore/exploreContainers';
+
 const Stack = createStackNavigator();
 
 const customisedOptions = (title: string, iconName: string) => {
@@ -22,7 +25,7 @@ export const HomeNavigator = () => (
 	<Stack.Navigator>
 		<Stack.Screen
 			name="Home"
-			component={HomeContainer}
+			component={LatestContainer}
 			options={customisedOptions('Mentemia', 'stars')}
 		/>
 		<Stack.Screen
