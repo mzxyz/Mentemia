@@ -19,7 +19,6 @@ export const ContentContainer = styled(Animated.View)`
 	border-color: lightgray;
 	border-width: ${({ focused }) => (focused ? 0 : StyleSheet.hairlineWidth)}px;
 	overflow: hidden;
-	zIndex: 0
 `;
 
 export const TagContainer = styled.View`
@@ -41,8 +40,7 @@ export const MainTitle = styled(Animated.Text)`
 	color: ${({ focused }: Focused) => (focused ? '#fff' : '#000')};
 `;
 
-export const DetailsContainer = styled.View`
-`;
+export const DetailsContainer = styled.View``;
 
 export const Description = styled.Text`
 	font-size: 15px;
@@ -73,7 +71,6 @@ export const FavoriteContainer = styled.View`
 	right: 20px;
 `;
 
-
 const width = Dimensions.get('window').width;
 
 export const style = StyleSheet.create({
@@ -82,6 +79,6 @@ export const style = StyleSheet.create({
 		borderColor: 'lightgray',
 		borderWidth: StyleSheet.hairlineWidth,
 		// TODO: Better to use `contain` with correct image size
-		resizeMode: 'cover', 
+		resizeMode: 'cover',
 	},
 });

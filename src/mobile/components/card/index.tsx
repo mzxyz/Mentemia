@@ -26,7 +26,7 @@ type Props = {
 	imageSource: { uri: string } | number;
 	onFavoriteChanged: (isFavorite: boolean) => void;
 	onPress: (isExpand: boolean) => void;
-	onBtnPress: () => void,
+	onBtnPress: () => void;
 };
 
 export const CARD_HEIGHT = 300;
@@ -49,56 +49,53 @@ const Card: React.FC<Props> = ({
 
 	const createInterpolate = (from, to) => ({
 		inputRange: [0, 1],
-    outputRange: [from, to],
-		extrapolate: 'clamp'
+		outputRange: [from, to],
+		extrapolate: 'clamp',
 	});
 
 	// create interpolate values
 	const BGColorInterpolate = createInterpolate('rgba(255, 255, 255, 1)', 'rgba(0, 0, 0, 0.4)');
 	const cardHeightInterpolate = createInterpolate(CARD_HEIGHT, CARD_EXPAND_HEIGHT);
 
-	const startAnimation = (
-		origin: Animated.Value, 
-		toValue: number, 
-		duration = 500
-	) => {
+	const startAnimation = (origin: Animated.Value, toValue: number, duration = 500) => {
 		Animated.timing(origin, {
 			toValue,
 			duration,
 			useNativeDriver: false,
 		}).start();
-	}
+	};
 
 	const getHeight = (event) => {
-		const { nativeEvent } = event;
 		return _.get(event, 'nativeEvent.layout.height', 0);
-	}
-	
+	};
+
 	const emptyFn = () => {};
+
+	const onDetailsLayout = (event) => {
+		!detailsHeight && setDetailsHeight(getHeight(event));
+	};
+
+	const onExpandLayout = (event) => {
+		!contentExpandHeight && setContentExpandHeight(getHeight(event));
+	};
 
 	const onCardPress = () => {
 		onPress(!isExpanded);
 		startAnimation(expand, isExpanded ? 0 : 1);
 		setIsExpanded(!isExpanded);
-	}
-
-	const onDetailsLayout = (event) => {
-		setDetailsHeight(getHeight(event));
 	};
 
-	const onExpandLayout = (event) => {
-		setContentExpandHeight(getHeight(event));
-	};
-
+	// content animation style
 	const animationStyle = {
 		backgroundColor: expand.interpolate(BGColorInterpolate),
 		height: expand.interpolate({
 			inputRange: [0, 1],
 			outputRange: [contentExpandHeight - detailsHeight, contentExpandHeight],
-			extrapolate: 'clamp'
-		})
+			extrapolate: 'clamp',
+		}),
 	};
 
+	// hidden content style
 	const hiddenStyle = {
 		opacity: 0,
 		position: 'absolute',
@@ -107,23 +104,15 @@ const Card: React.FC<Props> = ({
 	// The card component need to render 2 times
 	// 1. first render pass the layout fn to get the card height
 	// 2. second render display the card properly
-	const renderContent = (
-		style,
-		onDetailsLayout = emptyFn,
-		onExpandLayout = emptyFn
-	) => (
-		<ContentContainer 
-			style={style}
-			focused={isExpanded}
-			onLayout={onExpandLayout}
-		>
+	const renderContent = (style, onDetailsLayout = emptyFn, onExpandLayout = emptyFn) => (
+		<ContentContainer style={style} focused={isExpanded} onLayout={onExpandLayout}>
 			<TagView isFocused={isExpanded} text={tag} />
 			<MainTitle focused={isExpanded}>{title}</MainTitle>
 			<DetailsContainer onLayout={onDetailsLayout}>
-			{<Description>{subTitle}</Description>}
-			<Button onPress={onBtnPress}>
-				<ButtonTitle>Read</ButtonTitle>
-			</Button>
+				{<Description>{subTitle}</Description>}
+				<Button onPress={onBtnPress}>
+					<ButtonTitle>Read</ButtonTitle>
+				</Button>
 			</DetailsContainer>
 		</ContentContainer>
 	);
@@ -132,7 +121,8 @@ const Card: React.FC<Props> = ({
 		<TouchableWithoutFeedback onPress={onCardPress}>
 			<Container style={{ height: expand.interpolate(cardHeightInterpolate) }}>
 				<BGImageContaienr source={imageSource} imageStyle={style.image}>
-					{renderContent(hiddenStyle, onDetailsLayout, onExpandLayout)}
+					{!(detailsHeight && contentExpandHeight) &&
+						renderContent(hiddenStyle, onDetailsLayout, onExpandLayout)}
 					{renderContent(animationStyle)}
 				</BGImageContaienr>
 				<FavoriteContainer>

@@ -31,10 +31,9 @@ const TrainingPage: React.FC<Props> = ({ projects, onRequestData }) => {
 	return (
 		<View style={{ flex: 1 }}>
 			<TabHeader title="Tools" />
-			<ScrollView 
+			<ScrollView
 				style={{ flex: 1, backgroundColor: gray }}
-				showsVerticalScrollIndicator={false}
-			>
+				showsVerticalScrollIndicator={false}>
 				{!!projects && projects.map(renderRowItem)}
 			</ScrollView>
 		</View>

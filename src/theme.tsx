@@ -32,8 +32,7 @@ const theme = {
 		gray: '#fbfbfd',
 		darkGray: '#d2d2d4',
 	},
-	size: {
-	}
-}
+	size: {},
+};
 
 export default theme;

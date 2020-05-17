@@ -9,7 +9,7 @@ type Props = {
 	subTitle: string;
 	iconName: string;
 	iconColor: string;
-	onPress ?: () => void;
+	onPress?: () => void;
 };
 
 const RowItem: React.FC<Props> = ({ title, subTitle, iconName, iconColor, onPress }) => (

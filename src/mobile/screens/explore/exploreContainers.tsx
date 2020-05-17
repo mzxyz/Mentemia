@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 			type: actionTypes.changeFavorite.toggled,
 			payload: { item, isFavorite },
 		}),
-	onNavigation: () =>  navigate('MediaDetails')
+	onNavigation: () => navigate('MediaDetails'),
 });
 
 export const LatestContainer = connect(mapStateToLatestProps, mapDispatchToProps)(ExplorePage);

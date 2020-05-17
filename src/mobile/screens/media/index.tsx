@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 	onPageBack: () => navigation().goBack(),
 	onNavigateToMediaPage: () => {
 		navigation().goBack();
-		navigate('MediaDetails')
+		navigate('MediaDetails');
 	},
 	onRequestData: () => dispatch({ type: actionTypes.media.requested }),
 	onFavoriteChanged: (item: MediaCard, isFavorite: boolean) =>

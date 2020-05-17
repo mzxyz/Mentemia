@@ -6,12 +6,7 @@ import { Label, Training } from '../../../reducers/types';
 import { Props } from './index';
 import theme from '../../../theme';
 
-const HomePage: React.FC<Props> = ({
-	actions,
-	medias,
-	onRequestData,
-	onNavigateToMediaPage
-}) => {
+const HomePage: React.FC<Props> = ({ actions, medias, onRequestData, onNavigateToMediaPage }) => {
 	useEffect(() => {
 		onRequestData();
 	}, []);
@@ -37,7 +32,7 @@ const HomePage: React.FC<Props> = ({
 				key={`${title}${index}`}
 				title={title}
 				content={subTitle}
-				onPress={(onNavigateToMediaPage)}
+				onPress={onNavigateToMediaPage}
 			/>
 		);
 	};
@@ -46,10 +41,9 @@ const HomePage: React.FC<Props> = ({
 		<View style={{ flex: 1 }}>
 			<StatusBar barStyle="dark-content" />
 			<TabHeader title="Today" />
-			<ScrollView 
+			<ScrollView
 				style={{ flex: 1, backgroundColor: theme.color.gray }}
-				showsVerticalScrollIndicator={false}
-			>
+				showsVerticalScrollIndicator={false}>
 				{actions.map(renderActions)}
 				{medias.map(renderMedias)}
 			</ScrollView>

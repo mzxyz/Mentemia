@@ -16,4 +16,4 @@ export type Props = ConnectedProps<typeof connector>;
 // Alternatively solution:
 // export type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
-export default connector(TrainingPage)
+export default connector(TrainingPage);

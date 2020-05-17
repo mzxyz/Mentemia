@@ -75,10 +75,5 @@
       "json",
       "node"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn format-check"
-    }
   }
 }

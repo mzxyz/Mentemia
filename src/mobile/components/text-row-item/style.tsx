@@ -17,7 +17,7 @@ export const Container = styled.TouchableOpacity`
 export const Title = styled.Text`
 	font-size: 14px;
 	font-weight: 500;
-	color: ${({ hightlight }: Hightlight) => (hightlight ? green : blue )};
+	color: ${({ hightlight }: Hightlight) => (hightlight ? green : blue)};
 `;
 
 export const Content = styled.Text`

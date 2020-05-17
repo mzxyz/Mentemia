@@ -17,30 +17,37 @@ const ExplorePage: React.FC<Props> = ({
 	dataList,
 	onRefreshData,
 	onFavoriteChanged,
-	onNavigation
+	onNavigation,
 }) => {
-	useEffect(() => { onRefreshData(type);}, []);
-
 	const cardHeight = { origin: 315, expand: 465 };
-	const cardHeightList = useRef(dataList.map(() => cardHeight.origin));
+	const cardHeightList = useRef([cardHeight.origin]);
 	const listRef = useRef();
 
+	useEffect(() => {
+		onRefreshData(type);
+	}, []);
+
+	// Same with `componentWillReceiveProps`, only call when `dataList` changed
+	useEffect(() => {
+		cardHeightList.current = dataList.map(() => cardHeight.origin);
+	}, [dataList]);
+
 	const offsetFromIndex = (isExpanded: boolean, index: number) => {
-		const offset = cardHeightList.current.slice(0, index).reduce((acc, value) => acc + value, 0);
+		const offset = cardHeightList.current
+			.slice(0, index)
+			.reduce((acc, value) => acc + value, 0);
 		return offset + (isExpanded ? 0 : cardHeight.origin / 2);
-	}
+	};
 
 	const onCardPress = (isExpanded: boolean, index: number) => {
-		const currentHeight = isExpanded ? cardHeight.expand : cardHeight.origin;			
-		cardHeightList.current[index] = currentHeight;
-
-		listRef.current.scrollToOffset({ 
+		cardHeightList.current[index] = isExpanded ? cardHeight.expand : cardHeight.origin;
+		listRef.current.scrollToOffset({
 			offset: offsetFromIndex(isExpanded, index),
-			animated: true
+			animated: true,
 		});
-	}
+	};
 
-	const renderCard = ({ item, index}: { item: MediaCard, index: number }) => {
+	const renderCard = ({ item, index }: { item: MediaCard; index: number }) => {
 		const { id, title, details, image, tag, isFavorite } = item;
 		return (
 			<Card
@@ -55,20 +62,19 @@ const ExplorePage: React.FC<Props> = ({
 				onPress={(isExpanded) => onCardPress(isExpanded, index)}
 			/>
 		);
-	}
-
+	};
 
 	return (
 		<FlatList
-			ref={ref => listRef.current = ref}
+			ref={(ref) => (listRef.current = ref)}
 			initialNumToRender={6}
 			data={dataList}
 			CellRendererComponent={renderCard}
-			keyExtractor={item => `${item.id}${item.title}`}
+			keyExtractor={(item) => `${item.id}${item.title}`}
 			contentContainerStyle={{ margin: 15 }}
-			contentInset={{  bottom: cardHeight.origin / 2 }}
+			contentInset={{ bottom: cardHeight.origin / 2 }}
 		/>
 	);
-}
+};
 
 export default ExplorePage;
